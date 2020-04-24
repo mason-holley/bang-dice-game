@@ -91,8 +91,25 @@ public class setup {
             return charValue;
         
     }
-
-   
+   /**
+    * Removes a player from the array list
+    * @author Mason Holley
+    * @param player
+    * @return amount of players
+    */      
+ public static int removePlayer(int player){
+     turnOrder.remove(player);
+     return getPlayerAmount(false);
+ }
+    /**
+    * Returns the current array list, the turn order.
+    * @author Mason Holley
+    * @param player
+    * @return amount of players
+    */      
+ public static ArrayList getArrayList(){
+     return turnOrder;
+ }
    
    
 }
