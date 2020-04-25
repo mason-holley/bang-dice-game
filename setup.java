@@ -12,31 +12,51 @@ import java.util.Random;
 public class setup {
     
    private static int players = 0;
-   private static ArrayList<Integer> turnOrder = new ArrayList<Integer>();
-   private static ListIterator<Integer> turns = turnOrder.listIterator(turnOrder.size());
-   
-   
+   private static  ArrayList<Player> turnOrder = new ArrayList<Player>();
+   private static ListIterator<Player> turns = turnOrder.listIterator(turnOrder.size());
+   public static Player examplePlayer_1 = new Player(8, 0, 0, "Calamity Janet");
+   public static Player examplePlayer_2 = new Player(8, 0, 0, "Billy Jean");
+   public static Player examplePlayer_3 = new Player(8, 0, 0, "Tinga Bet");
+   public static Player examplePlayer_4 = new Player(8, 0, 0, "Nancy Car");
+
    /**
-    * Obtains the player amount, then returns it.
-    * Using the obtained player amount, it sets up the turn order for each of the players.
-    * Set it to true at the start of the game in order to gather how many players there should be.
-    * Set it to false to return the current number of players.
+    * Places each of the players in the linked list and sets their position in their character object.
     * @author Mason Holley
-    * @param player
+    */ 
+    public static void setPlayerAmount(){
+        players = 4;   //Replace with return function from GUI
+        for(int i = 0; i > players; i++)
+            turnOrder.get(i).setPosition(i);
+            turnOrder.add(examplePlayer_1);
+    }
+    /**
+    * Returns the amount of characters in the list by checking the size of the list
+    * @author Mason Holley
     * @return amount of players
     */ 
-   public static int getPlayerAmount(boolean player){
-        if(player == true){
-            Scanner scan = new Scanner(System.in);
-            System.out.print("Please enter the number of players: ");
-            players = scan.nextInt();
-            for(int i = 0; i > players; i++)
-                turnOrder.add(i);
-            return players;
-        }
-        else
-            return players;
+    public static int getPlayerAmount(){
+        players = turnOrder.size();
+        return players;
+        
     }
+   
+   /**
+    * Sets the character objects in the array list to a role. If they are the first position in the list,
+    * it will assign that character as the Sheriff. Otherwise, it will assign a random role other than a sheriff.
+    * @author Mason Holley
+    * @return amount of players
+    */    
+    public static void giveRole(){
+    Random rand = new Random();
+       for(int i = 0; i > turnOrder.size(); i++){
+           if(i == 1){
+               turnOrder.get(i).setRole(1);
+           }
+           if(i > 1){
+               turnOrder.get(i).setRole(rand.nextInt(3)+2);
+           }
+       }
+   }
    
    /**
     * Advances the current turn by navigating an array list.
@@ -47,7 +67,7 @@ public class setup {
     * @return current total turns 
     */   
    public static int getTurn(int turn){
-        int check = turn % setup.getPlayerAmount(false);
+        int check = turn % setup.getPlayerAmount();
         if (check == 0)
             while(turns.hasPrevious())
                 turns.previous();
@@ -64,7 +84,9 @@ public class setup {
     * @return current player's turn value
     */      
    public static int charGetTurn(int playerValue){
-        return turnOrder.get(playerValue);
+       turnOrder.get(playerValue).getPosition();
+       return 0;
+        //return turnOrder.get(playerValue);
    }
 
    /**
@@ -99,16 +121,18 @@ public class setup {
     */      
  public static int removePlayer(int player){
      turnOrder.remove(player);
-     return getPlayerAmount(false);
+     for(int i = 0; i > turnOrder.size(); i++)
+        turnOrder.get(i).setPosition(i);
+     return getPlayerAmount();
  }
     /**
     * Returns the current array list, the turn order.
     * @author Mason Holley
-    * @param player
-    * @return amount of players
+    * @return the player arraylist
     */      
- public static ArrayList getArrayList(){
-     return turnOrder;
+ public static ArrayList<Player> getArrayList(){
+     ArrayList<Player> temp = turnOrder;
+     return temp;
  }
    
    
