@@ -63,10 +63,10 @@ public class setup {
     public static void giveRole(){
     Random rand = new Random();
        for(int i = 0; i > turnOrder.size(); i++){
-           if(i == 1){
+           if(i == 0){
                turnOrder.get(i).setRole(1);
            }
-           if(i > 1){
+           if(i > 0){
                switch(getPlayerAmount()){
                    case 4:
                        renegade = 1;
