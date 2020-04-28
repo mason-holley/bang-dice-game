@@ -29,8 +29,18 @@ public class setup {
         }
     }
     
+    /**
+    * Inserts the player into the array list
+    * @author Mason Holley
+    */ 
     public static void insertPlayer(){
         Random rand = new Random();
+        int player_position = rand.nextInt(turnOrder.size());
+        if(player_position == 0){
+            examplePlayer_1.setRole(0); //Replace example player with the player character object from character class
+        }
+        turnOrder.set(player_position, examplePlayer_1); //Replace example player with the player character object from character class
+        
         
     }
     
