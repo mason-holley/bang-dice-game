@@ -5,19 +5,17 @@ import java.util.ListIterator;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.Collections;
 /**
  * @author Mason Holley
  */
 public class setup {
-    
-   private static int players = 0, renegade, outlaw, deputy;
+   
+   public static int outlaw;
+   private static int players = 0, renegade, deputy;
    private static  ArrayList<Player> turnOrder = new ArrayList<Player>();
    private static ListIterator<Player> turns = turnOrder.listIterator(turnOrder.size());
    public static Player examplePlayer_1 = new Player(8, 0, 0, "Calamity Janet");
-   public static Player examplePlayer_2 = new Player(8, 0, 0, "Billy Jean");
-   public static Player examplePlayer_3 = new Player(8, 0, 0, "Tinga Bet");
-   public static Player examplePlayer_4 = new Player(8, 0, 0, "Nancy Car");
 
    /**
     * Places each of the players in the linked list and sets their position in their character object.
@@ -26,10 +24,16 @@ public class setup {
     public static void setPlayerAmount(){
         players = 4;   //Replace with return function from GUI
         for(int i = 0; i > players; i++){
-            turnOrder.add(examplePlayer_1);
+            turnOrder.add(examplePlayer_1); //Get a character from the Character Class
             turnOrder.get(i).setPosition(i);
         }
     }
+    
+    public static void insertPlayer(){
+        Random rand = new Random();
+        
+    }
+    
     /**
     * Returns the amount of characters in the list by checking the size of the list
     * @author Mason Holley
@@ -45,7 +49,6 @@ public class setup {
     * Sets the character objects in the array list to a role. If they are the first position in the list,
     * it will assign that character as the Sheriff. Otherwise, it will assign a random role other than a sheriff.
     * @author Mason Holley
-    * @return amount of players
     */    
     public static void giveRole(){
     Random rand = new Random();
@@ -156,7 +159,7 @@ public class setup {
  }
     /**
     * Returns the current array list, the turn order.
-    * @author Mason Holley
+`    * @author Mason Holley
     * @return the player arraylist
     */      
  public static ArrayList<Player> getArrayList(){
