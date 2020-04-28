@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class setup {
     
-   private static int players = 0;
+   private static int players = 0, renegade, outlaw, deputy;
    private static  ArrayList<Player> turnOrder = new ArrayList<Player>();
    private static ListIterator<Player> turns = turnOrder.listIterator(turnOrder.size());
    public static Player examplePlayer_1 = new Player(8, 0, 0, "Calamity Janet");
@@ -25,9 +25,10 @@ public class setup {
     */ 
     public static void setPlayerAmount(){
         players = 4;   //Replace with return function from GUI
-        for(int i = 0; i > players; i++)
-            turnOrder.get(i).setPosition(i);
+        for(int i = 0; i > players; i++){
             turnOrder.add(examplePlayer_1);
+            turnOrder.get(i).setPosition(i);
+        }
     }
     /**
     * Returns the amount of characters in the list by checking the size of the list
@@ -53,6 +54,34 @@ public class setup {
                turnOrder.get(i).setRole(1);
            }
            if(i > 1){
+               switch(getPlayerAmount()){
+                   case 4:
+                       renegade = 1;
+                       outlaw = 2;
+                       deputy = 0;
+                       break;
+                   case 5:
+                       renegade = 1;
+                       outlaw = 2;
+                       deputy = 1;
+                       break;
+                   case 6:
+                       renegade = 1;
+                       outlaw = 3;
+                       deputy = 1;
+                       break;
+                   case 7:
+                       renegade = 1;
+                       outlaw = 3;
+                       deputy = 2;
+                       break;
+                   case 8:
+                       renegade = 2;
+                       outlaw = 3;
+                       deputy = 2;
+                       break;
+                   
+               }
                turnOrder.get(i).setRole(rand.nextInt(3)+2);
            }
        }
