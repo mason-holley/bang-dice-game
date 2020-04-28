@@ -1,3 +1,5 @@
+//CS2365 OOP Spring 2020 
+//Project 3: bang the dice game
 /*
  *  1 = arrow
  *  2 = Dynamite 
@@ -10,13 +12,13 @@ package bang_game;
 import java.util.Random;
 
 /**
- *
- * @author vincenthew
+ *This class is used to implement the die
+ * @author Vincent Hew
  */
 public class Dice{
     private int diceResult;
     private boolean lock;
-    private static boolean globalLockDown;
+    public static boolean globalLockDown;
     private int solveCount;
     private static int arrows;
     private static int dynamite;
@@ -24,7 +26,11 @@ public class Dice{
     private static int firstRoll;
     public static int rerollCount;
     private Action diceAct;
-    
+    /**
+     * This constructor is used to create a dice object with default attributes
+     *@author Vincent Hew
+     * @param self (current player: Player)
+     */
     public Dice(Player self) {
         diceResult = 0;
         arrows = 9;
@@ -37,7 +43,10 @@ public class Dice{
         firstRoll = 0;
         diceAct = new Action(self);
     }
-    
+    /**
+     *This method is used to roll the single dice and resolve after the dice is locked
+     * @author Vincent Hew
+     */
     public void rollDice(){
         Random randDice = new Random();
         if(rerollCount == 0) {
@@ -85,37 +94,43 @@ public class Dice{
             }
         }
     }
-    
+    /**
+     *This method is used to lock the single dice
+     * @author Vincent Hew
+     * @param lockStatus (true is lock the dice; false is unlock the dice: boolean)
+     */
     public void diceLock(boolean lockStatus) {
         if(lockStatus == true)
             lock = true;
         else
             lock = false;
     }
-    
+    /**
+     *This method is used to access the diceResult and return the value
+     * @author Vincent Hew
+     * @return temp (dice result: int)
+     */
     public int getDice() {
         int temp;
         temp = diceResult;
         return temp;
     }
-    
+    /**
+     * This method is used to resolve the dice result only for bull eye 1, bull eye 2, beer, and gatling
+     * @author Vincent Hew
+     */
     private void diceResolve(){
-        Random randDecision = new Random();
-        int targetDecision = 0;
         solveCount++;
         if(solveCount == 1) {
             switch(diceResult) {
                 case 3:
-                    targetDecision = randDecision.nextInt(1);
-                    diceAct.actBullet_1(targetDecision);
+                    diceAct.actBullet_1();
                     break;
                 case 4:
-                    targetDecision = randDecision.nextInt(1);
-                    diceAct.actBullet_2(targetDecision);
+                    diceAct.actBullet_2();
                     break;
                 case 5:
-                    targetDecision = randDecision.nextInt(TB.getList().size());
-                    diceAct.actBeer(targetDecision);
+                    diceAct.actBeer();
                     break;
                 case 6:
                     gatling++;
@@ -126,15 +141,27 @@ public class Dice{
             }
         }
     }
-    
+    /**
+     *This method is used to get access to the arrow pile value and return how many arrows left in the pile
+     * @author Vincent Hew
+     * @return temp (arrows left in the pile: int)
+     */
     public static int getArrowPile() {
         int temp = arrows;
         return temp;
     }
+    /**
+     *This method is used to set the value to the arrow pile
+     * @author Vincent Hew
+     * @param val (arrows to set the pile: int)
+     */
     public static void setArrowPile(int val) {
         arrows = val;
     }
-    
+    /**
+     *This method is to reset the single dice back to the default value
+     * @author Vincent Hew
+     */
     public void resetDice() {
         diceResult = 0;
         dynamite = 0;
