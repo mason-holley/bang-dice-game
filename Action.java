@@ -27,10 +27,10 @@ public class Action {
      */
     public void actArrows() {
         int arrowHeld = 0;
-        for(int i = 0; i < TB.getList().size(); i++) {
-            arrowHeld = TB.getList().get(i).getArrow();
-            loseHP(TB.getList().get(i), arrowHeld);
-            TB.getList().get(i).resetSelfArrow();
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            arrowHeld = setup.getArrayList().get(i).getArrow();
+            loseHP(setup.getArrayList().get(i), arrowHeld);
+            setup.getArrayList().get(i).resetSelfArrow();
             addArrowBack(arrowHeld);
         }
     }
@@ -48,9 +48,9 @@ public class Action {
      * @author vincenthew
      */
     public void actGatling() {
-        for(int i = 0; i < TB.getList().size(); i++) {
-            if(TB.getList().get(i).equals(actPlayer) == false) 
-                loseHP(TB.getList().get(i), 1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).equals(actPlayer) == false) 
+                loseHP(setup.getArrayList().get(i), 1);
         }
         addArrowBack(actPlayer.getArrow());
         actPlayer.resetSelfArrow();
@@ -65,48 +65,48 @@ public class Action {
         int right = 0;
         Player actTarget = new Player();
         Random rand = new Random();
-        left = leftTargetPos(TB.getList().indexOf(actPlayer));
-        right = rightTargetPos(TB.getList().indexOf(actPlayer));
-        optionL = Decision.getThreatLv(actPlayer.getOriPos(), TB.getList().get(left).getOriPos());
-        optionR = Decision.getThreatLv(actPlayer.getOriPos(), TB.getList().get(right).getOriPos());
-        if(actPlayer.getRole() == 2 && (TB.getList().get(left).getRole() == 1 || TB.getList().get(right).getRole() == 1)) {
-            if(TB.getList().get(left).getRole() == 1) {
-                if(TB.getList().get(left).getHP() > actPlayer.getHP()) {
-                    loseHP(TB.getList().get(left), 1);
-                    actTarget = TB.getList().get(left);
+        left = leftTargetPos(setup.getArrayList().indexOf(actPlayer));
+        right = rightTargetPos(setup.getArrayList().indexOf(actPlayer));
+        optionL = Decision.getThreatLv(actPlayer.getOriPos(), setup.getArrayList().get(left).getOriPos());
+        optionR = Decision.getThreatLv(actPlayer.getOriPos(), setup.getArrayList().get(right).getOriPos());
+        if(actPlayer.getRole() == 2 && (setup.getArrayList().get(left).getRole() == 1 || setup.getArrayList().get(right).getRole() == 1)) {
+            if(setup.getArrayList().get(left).getRole() == 1) {
+                if(setup.getArrayList().get(left).getHP() > actPlayer.getHP()) {
+                    loseHP(setup.getArrayList().get(left), 1);
+                    actTarget = setup.getArrayList().get(left);
                 }
                 else {
-                    loseHP(TB.getList().get(right), 1);
-                    actTarget = TB.getList().get(right);
+                    loseHP(setup.getArrayList().get(right), 1);
+                    actTarget = setup.getArrayList().get(right);
                 }
             }
-            else if(TB.getList().get(right).getRole() == 1) {
-                if(TB.getList().get(right).getHP() > actPlayer.getHP()) {
-                    loseHP(TB.getList().get(right), 1);
-                    actTarget = TB.getList().get(right);
+            else if(setup.getArrayList().get(right).getRole() == 1) {
+                if(setup.getArrayList().get(right).getHP() > actPlayer.getHP()) {
+                    loseHP(setup.getArrayList().get(right), 1);
+                    actTarget = setup.getArrayList().get(right);
                 }
                 else {
-                    loseHP(TB.getList().get(left), 1);
-                    actTarget = TB.getList().get(left);
+                    loseHP(setup.getArrayList().get(left), 1);
+                    actTarget = setup.getArrayList().get(left);
                 }
             }  
         }
         else if(optionL > optionR) {
-            loseHP(TB.getList().get(left), 1);
-            actTarget = TB.getList().get(left);
+            loseHP(setup.getArrayList().get(left), 1);
+            actTarget = setup.getArrayList().get(left);
         }
         else if(optionL < optionR) {
-            loseHP(TB.getList().get(right), 1);
-            actTarget = TB.getList().get(right);
+            loseHP(setup.getArrayList().get(right), 1);
+            actTarget = setup.getArrayList().get(right);
         }
         else if(optionL == optionR) {
             if(rand.nextInt(2) == 0) {
-                loseHP(TB.getList().get(left), 1);
-                actTarget = TB.getList().get(left);
+                loseHP(setup.getArrayList().get(left), 1);
+                actTarget = setup.getArrayList().get(left);
             }
             else {
-                loseHP(TB.getList().get(right), 1);
-                actTarget = TB.getList().get(right);
+                loseHP(setup.getArrayList().get(right), 1);
+                actTarget = setup.getArrayList().get(right);
             }
         }
         // update graph
@@ -124,51 +124,51 @@ public class Action {
         int right = 0;
         Player actTarget = new Player();
         Random rand = new Random();
-        if(TB.getList().size() == 3 || TB.getList().size() == 2)
+        if(setup.getArrayList().size() == 3 || setup.getArrayList().size() == 2)
             actBullet_1();
         else {
-            left = leftTargetPos((TB.getList().indexOf(actPlayer))+1);
-            right = rightTargetPos((TB.getList().indexOf(actPlayer))-1);
-            optionL = Decision.getThreatLv(actPlayer.getOriPos(), TB.getList().get(left).getOriPos());
-            optionR = Decision.getThreatLv(actPlayer.getOriPos(), TB.getList().get(right).getOriPos());
-            if(actPlayer.getRole() == 2 && (TB.getList().get(left).getRole() == 1 || TB.getList().get(right).getRole() == 1)) {
-                if(TB.getList().get(left).getRole() == 1) {
-                    if(TB.getList().get(left).getHP() > actPlayer.getHP()) {
-                        loseHP(TB.getList().get(left), 1);
-                        actTarget = TB.getList().get(left);
+            left = leftTargetPos((setup.getArrayList().indexOf(actPlayer))+1);
+            right = rightTargetPos((setup.getArrayList().indexOf(actPlayer))-1);
+            optionL = Decision.getThreatLv(actPlayer.getOriPos(), setup.getArrayList().get(left).getOriPos());
+            optionR = Decision.getThreatLv(actPlayer.getOriPos(), setup.getArrayList().get(right).getOriPos());
+            if(actPlayer.getRole() == 2 && (setup.getArrayList().get(left).getRole() == 1 || setup.getArrayList().get(right).getRole() == 1)) {
+                if(setup.getArrayList().get(left).getRole() == 1) {
+                    if(setup.getArrayList().get(left).getHP() > actPlayer.getHP()) {
+                        loseHP(setup.getArrayList().get(left), 1);
+                        actTarget = setup.getArrayList().get(left);
                     }
                     else {
-                        loseHP(TB.getList().get(right), 1);
-                        actTarget = TB.getList().get(right);
+                        loseHP(setup.getArrayList().get(right), 1);
+                        actTarget = setup.getArrayList().get(right);
                     }
                 }
-                else if(TB.getList().get(right).getRole() == 1) {
-                    if(TB.getList().get(right).getHP() > actPlayer.getHP()) {
-                        loseHP(TB.getList().get(right), 1);
-                        actTarget = TB.getList().get(right);
+                else if(setup.getArrayList().get(right).getRole() == 1) {
+                    if(setup.getArrayList().get(right).getHP() > actPlayer.getHP()) {
+                        loseHP(setup.getArrayList().get(right), 1);
+                        actTarget = setup.getArrayList().get(right);
                     }
                     else {
-                        loseHP(TB.getList().get(left), 1);
-                        actTarget = TB.getList().get(left);
+                        loseHP(setup.getArrayList().get(left), 1);
+                        actTarget = setup.getArrayList().get(left);
                     }
                 }  
             }
             else if(optionL > optionR) {
-                loseHP(TB.getList().get(left), 1);
-                actTarget = TB.getList().get(left);
+                loseHP(setup.getArrayList().get(left), 1);
+                actTarget = setup.getArrayList().get(left);
             }
             else if(optionL < optionR) {
-                loseHP(TB.getList().get(right), 1);
-                actTarget = TB.getList().get(right);
+                loseHP(setup.getArrayList().get(right), 1);
+                actTarget = setup.getArrayList().get(right);
             }
             else if(optionL == optionR) {
                 if(rand.nextInt(2) == 0) {
-                    loseHP(TB.getList().get(left), 1);
-                    actTarget = TB.getList().get(left);
+                    loseHP(setup.getArrayList().get(left), 1);
+                    actTarget = setup.getArrayList().get(left);
                 }
                 else {
-                    loseHP(TB.getList().get(right), 1);
-                    actTarget = TB.getList().get(right);
+                    loseHP(setup.getArrayList().get(right), 1);
+                    actTarget = setup.getArrayList().get(right);
                 }
             }
             // update graph
@@ -185,8 +185,8 @@ public class Action {
         Player actTarget = new Player();
         if(actPlayer.getRole() == 2) {
             if(searchPlayer(1).getHP() < 5 && TB.outlawsCount > 0 && actPlayer.getHP() > searchPlayer(1).getHP()) {
-                gainHP(TB.getList().get(searchSheriff()), 1);
-                actTarget = TB.getList().get(searchSheriff());
+                gainHP(setup.getArrayList().get(searchSheriff()), 1);
+                actTarget = setup.getArrayList().get(searchSheriff());
             }
             else {
                 gainHP(actPlayer, 1);
@@ -195,8 +195,8 @@ public class Action {
         }
         else if(actPlayer.getRole() == 4) {
             if(searchPlayer(1).getHP() != searchPlayer(1).getInitialHP()) {
-                gainHP(TB.getList().get(searchSheriff()), 1);
-                actTarget = TB.getList().get(searchSheriff());
+                gainHP(setup.getArrayList().get(searchSheriff()), 1);
+                actTarget = setup.getArrayList().get(searchSheriff());
             }
             else {
                 gainHP(actPlayer, 1);
@@ -262,8 +262,8 @@ public class Action {
         int targetPos;
         targetPos = self + 1;
         //when the self position is at the end of list
-        if(targetPos >= TB.getList().size()) {
-            targetPos = targetPos - TB.getList().size();
+        if(targetPos >= setup.getArrayList().size()) {
+            targetPos = targetPos - setup.getArrayList().size();
         }
         return targetPos;
     }
@@ -278,7 +278,7 @@ public class Action {
         targetPos = self - 1;
         //when the self position is at the begining of list
         if(targetPos < 0) {
-            targetPos = targetPos + TB.getList().size();
+            targetPos = targetPos + setup.getArrayList().size();
         }
         return targetPos;
     }
@@ -290,9 +290,9 @@ public class Action {
      */
     public static Player searchPlayer(int roleSearch) {
         Player foundPlayer = new Player();
-        for(int i = 0; i < TB.getList().size(); i++) {
-            if(TB.getList().get(i).getRole() == roleSearch) 
-                foundPlayer = TB.getList().get(i);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getRole() == roleSearch) 
+                foundPlayer = setup.getArrayList().get(i);
         }
         return foundPlayer;
     }
@@ -303,8 +303,8 @@ public class Action {
      */
     public static int searchSheriff() {
         int sheriffPos = 0;
-        for(int i = 0; i < TB.getList().size(); i++) {
-            if(TB.getList().get(i).getRole() == 1)
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getRole() == 1)
                 sheriffPos = i;
         }
         return sheriffPos;

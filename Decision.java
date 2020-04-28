@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Decision {
     private static int[][] decisionGraph = new int[8][8];
-    private static ArrayList<Player> list = TB.getList();
+    private static ArrayList<Player> list = setup.getArrayList();
     /**
      * This static method is used to create the initial graph depends on each of player's role.
      * The default value for the empty space is -1
@@ -95,64 +95,64 @@ public class Decision {
     public static void updateGraph(Player actor, int sheriffResult) {
         int prev = 0;
         if(sheriffResult == 0) {        // sheriff get attacked by actor
-            for(int i = 0; i < TB.getList().size(); i++) {
-                if(TB.getList().get(i).equals(actor) == false) {
-                    prev = decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()];
-                    switch(TB.getList().get(i).getRole()) {
+            for(int i = 0; i < setup.getArrayList().size(); i++) {
+                if(setup.getArrayList().get(i).equals(actor) == false) {
+                    prev = decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()];
+                    switch(setup.getArrayList().get(i).getRole()) {
                         case 1:
-                            decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] += 13;
-                            if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev == 100)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 100;
-                            else if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev != 100)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 99;
+                            decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] += 13;
+                            if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev == 100)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 100;
+                            else if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev != 100)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 99;
                             break;
                         case 2:
                             break;
                         case 3:
-                            decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] -= 7;
-                            if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev == 0)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 0;
-                            else if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev != 0)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 1;
+                            decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] -= 7;
+                            if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev == 0)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 0;
+                            else if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev != 0)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 1;
                             break;
                         case 4:
-                            decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] += 13;
-                            if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev == 100)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 100;
-                            else if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev != 100)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 99;
+                            decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] += 13;
+                            if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev == 100)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 100;
+                            else if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev != 100)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 99;
                             break;
                     }
                 }
             }
         }
         else if(sheriffResult == 1) {   // sheriff get healed
-            for(int i = 0; i < TB.getList().size(); i++) {
-                if(TB.getList().get(i).equals(actor) == false) {
-                    prev = decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()];
-                    switch(TB.getList().get(i).getRole()) {
+            for(int i = 0; i < setup.getArrayList().size(); i++) {
+                if(setup.getArrayList().get(i).equals(actor) == false) {
+                    prev = decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()];
+                    switch(setup.getArrayList().get(i).getRole()) {
                         case 1:
-                            decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] -= 7;
-                            if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev == 0)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 0;
-                            else if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev != 0)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 1;
+                            decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] -= 7;
+                            if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev == 0)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 0;
+                            else if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev != 0)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 1;
                             break;
                         case 2:
                             break;
                         case 3:
-                            decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] += 13;
-                            if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev == 100)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 100;
-                            else if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev != 100)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 99;
+                            decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] += 13;
+                            if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev == 100)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 100;
+                            else if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] >= 100 && prev != 100)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 99;
                             break;
                         case 4:
-                            decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] -= 7;
-                            if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev == 0)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 0;
-                            else if(decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev != 0)
-                                decisionGraph[TB.getList().get(i).getOriPos()][actor.getOriPos()] = 1;
+                            decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] -= 7;
+                            if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev == 0)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 0;
+                            else if(decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] <= 0 && prev != 0)
+                                decisionGraph[setup.getArrayList().get(i).getOriPos()][actor.getOriPos()] = 1;
                             break;
                     }
                 }
