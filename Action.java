@@ -184,7 +184,7 @@ public class Action {
     public void actBeer() {
         Player actTarget = new Player();
         if(actPlayer.getRole() == 2) {
-            if(searchPlayer(1).getHP() < 5 && TB.outlawsCount > 0 && actPlayer.getHP() > searchPlayer(1).getHP()) {
+            if(searchPlayer(1).getHP() < 5 && setup.outlaw > 0 && actPlayer.getHP() > searchPlayer(1).getHP()) {
                 gainHP(setup.getArrayList().get(searchSheriff()), 1);
                 actTarget = setup.getArrayList().get(searchSheriff());
             }
