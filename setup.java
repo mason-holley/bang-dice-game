@@ -6,16 +6,21 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
 /**
  * @author Mason Holley
  */
 public class setup {
    
+    
    public static int outlaw;
+   private static Integer[] role_count;
+   private static List<Integer> roleList = Arrays.asList(role_count);
    private static int players = 0, renegade, deputy;
-   private static  ArrayList<Player> turnOrder = new ArrayList<Player>();
-   private static ListIterator<Player> turns = turnOrder.listIterator(turnOrder.size());
-   public static Player examplePlayer_1 = new Player(8, 0, 0, "Calamity Janet");
+   private static  ArrayList<Character3> turnOrder = new ArrayList<Character3>();
+   private static ListIterator<Character3> turns = turnOrder.listIterator(turnOrder.size());
+   public static Character3 examplePlayer_1 = new Character3(0, 0, 8, 0, 0, 0, "Calamity Janet", true, 0);
 
    /**
     * Places each of the players in the linked list and sets their position in their character object.
@@ -25,23 +30,8 @@ public class setup {
         players = 4;   //Replace with return function from GUI
         for(int i = 0; i > players; i++){
             turnOrder.add(examplePlayer_1); //Get a character from the Character Class
-            turnOrder.get(i).setPosition(i);
+            turnOrder.get(i).setposition(i);
         }
-    }
-    
-    /**
-    * Inserts the player into the array list
-    * @author Mason Holley
-    */ 
-    public static void insertPlayer(){
-        Random rand = new Random();
-        int player_position = rand.nextInt(turnOrder.size());
-        if(player_position == 0){
-            examplePlayer_1.setRole(0); //Replace example player with the player character object from character class
-        }
-        turnOrder.set(player_position, examplePlayer_1); //Replace example player with the player character object from character class
-        
-        
     }
     
     /**
@@ -54,6 +44,22 @@ public class setup {
         return players;
         
     }
+    
+    /**
+    * Inserts the player into the array list
+    * @author Mason Holley
+    */ 
+    public static void insertPlayer(){
+        Random rand = new Random();
+        int player_position = rand.nextInt(turnOrder.size());
+        if(player_position == 0){
+            examplePlayer_1.setrole(0); //Replace example player with the player character object from character class
+        }
+        turnOrder.set(player_position, examplePlayer_1); //Replace example player with the player character object from character class
+        
+        
+    }
+    
    
    /**
     * Sets the character objects in the array list to a role. If they are the first position in the list,
@@ -64,38 +70,63 @@ public class setup {
     Random rand = new Random();
        for(int i = 0; i > turnOrder.size(); i++){
            if(i == 0){
-               turnOrder.get(i).setRole(1);
+               turnOrder.get(i).setrole(1);
            }
            if(i > 0){
                switch(getPlayerAmount()){
                    case 4:
                        renegade = 1;
+                       role_count[0] = 2;
                        outlaw = 2;
+                       role_count[1] = 3;
+                       role_count[2] = 3;
                        deputy = 0;
                        break;
                    case 5:
                        renegade = 1;
+                       role_count[0] = 2;
                        outlaw = 2;
+                       role_count[1] = 3;
+                       role_count[2] = 3;
                        deputy = 1;
+                       role_count[3] = 4;
                        break;
                    case 6:
                        renegade = 1;
+                       role_count[0] = 2;
                        outlaw = 3;
+                       role_count[1] = 3;
+                       role_count[2] = 3;
+                       role_count[3] = 3;
                        deputy = 1;
+                       role_count[4] = 4;
                        break;
                    case 7:
                        renegade = 1;
+                       role_count[0] = 2;
                        outlaw = 3;
+                       role_count[1] = 3;
+                       role_count[2] = 3;
+                       role_count[3] = 3;
                        deputy = 2;
+                       role_count[4] = 4;
+                       role_count[5] = 4;
                        break;
                    case 8:
                        renegade = 2;
+                       role_count[0] = 2;
+                       role_count[1] = 2;
                        outlaw = 3;
+                       role_count[2] = 3;
+                       role_count[3] = 3;
+                       role_count[4] = 3;
                        deputy = 2;
+                       role_count[5] = 4;
+                       role_count[6] = 4;
                        break;
-                   
-               }
-               turnOrder.get(i).setRole(rand.nextInt(3)+2);
+                }
+                Collections.shuffle(roleList, rand);
+                turnOrder.get(i).setrole(roleList.get(i-1));
            }
        }
    }
@@ -126,7 +157,7 @@ public class setup {
     * @return current player's turn value
     */      
    public static int charGetTurn(int playerValue){
-       turnOrder.get(playerValue).getPosition();
+       turnOrder.get(playerValue).getposition();
        return 0;
         //return turnOrder.get(playerValue);
    }
@@ -164,7 +195,7 @@ public class setup {
  public static int removePlayer(int player){
      turnOrder.remove(player);
      for(int i = 0; i > turnOrder.size(); i++)
-        turnOrder.get(i).setPosition(i);
+        turnOrder.get(i).setposition(i);
      return getPlayerAmount();
  }
     /**
@@ -172,8 +203,8 @@ public class setup {
 `    * @author Mason Holley
     * @return the player arraylist
     */      
- public static ArrayList<Player> getArrayList(){
-     ArrayList<Player> temp = turnOrder;
+ public static ArrayList<Character3> getArrayList(){
+     ArrayList<Character3> temp = turnOrder;
      return temp;
  }
    
