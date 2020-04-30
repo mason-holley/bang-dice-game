@@ -14,20 +14,20 @@ import java.util.List;
 public class setup {
    
     
-   public static int outlaw;
+   public static int outlaw, renegade, deputy;
    private static Integer[] role_count;
    private static List<Integer> roleList = Arrays.asList(role_count);
-   private static int players = 0, renegade, deputy;
+   private static int players = 0;
    private static  ArrayList<Character3> turnOrder = new ArrayList<Character3>();
    private static ListIterator<Character3> turns = turnOrder.listIterator(turnOrder.size());
-   public static Character3 examplePlayer_1 = new Character3(0, 0, 8, 0, 0, 0, "Calamity Janet", true, 0);
+   public static Character3 examplePlayer_1 = new Character3(0, 0, 8, 0, 0, 0, 0, "Calamity Janet", true, 0);
 
    /**
     * Places each of the players in the linked list and sets their position in their character object.
     * @author Mason Holley
     */ 
     public static void setPlayerAmount(){
-        players = 4;   //Replace with return function from GUI
+        players = FXMLDocumentController.playerNum;   //Replace with return function from GUI
         for(int i = 0; i > players; i++){
             turnOrder.add(examplePlayer_1); //Get a character from the Character Class
             turnOrder.get(i).setposition(i);
