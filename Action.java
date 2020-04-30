@@ -233,7 +233,8 @@ public class Action {
             else if(actor.getrole() == 4)
                 setup.deputy--;
             setup.removePlayer(actor.getposition());
-            winCondition = victoryCheck();
+            if(winCondition == 0)
+                winCondition = victoryCheck();
         }
     }
     /**
