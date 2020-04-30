@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ang.TableController">
+   <children>
+      <Label layoutX="181.0" layoutY="40.0" prefHeight="75.0" prefWidth="118.0" text="This Roll">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="d1" fitHeight="92.0" fitWidth="55.0" layoutX="383.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="d2" fitHeight="92.0" fitWidth="55.0" layoutX="501.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="d3" fitHeight="92.0" fitWidth="55.0" layoutX="613.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="d4" fitHeight="92.0" fitWidth="55.0" layoutX="732.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="d5" fitHeight="92.0" fitWidth="55.0" layoutX="847.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="100.0" fitWidth="240.0" layoutX="23.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../C1PNG.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="23.0" layoutY="623.0" prefHeight="75.0" prefWidth="118.0" text="Role:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="roll" disable="true" layoutX="1062.0" layoutY="623.0" mnemonicParsing="false" onAction="#roll" prefHeight="75.0" prefWidth="161.0" text="Roll" />
+      <Label fx:id="HP" layoutX="1062.0" layoutY="546.0" prefHeight="58.0" prefWidth="161.0" text="HP:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#157c14" height="272.0" layoutX="279.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" width="722.0" />
+      <Label alignment="CENTER" layoutX="595.0" layoutY="475.0" prefHeight="45.0" prefWidth="91.0" text="You" />
+      <Button fx:id="bot1" disable="true" layoutX="1036.0" layoutY="400.0" mnemonicParsing="false" text="Bot 1" />
+      <Button fx:id="bot2" disable="true" layoutX="1036.0" layoutY="232.0" mnemonicParsing="false" text="Bot 2" />
+      <Button fx:id="bot3" disable="true" layoutX="795.0" layoutY="142.0" mnemonicParsing="false" text="Bot 3" />
+      <Button fx:id="bot4" disable="true" layoutX="445.0" layoutY="142.0" mnemonicParsing="false" text="Bot 4" />
+      <Button fx:id="bot5" disable="true" layoutX="196.0" layoutY="232.0" mnemonicParsing="false" text="Bot 5" />
+      <Button fx:id="bot6" disable="true" layoutX="196.0" layoutY="400.0" mnemonicParsing="false" text="Bot 6" />
+      <Button fx:id="reroll" disable="true" layoutX="925.0" layoutY="623.0" mnemonicParsing="false" onAction="#reroll" prefHeight="75.0" prefWidth="97.0" text="Reroll?" />
+      <CheckBox fx:id="DC1" layoutX="400.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="DC2" layoutX="518.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="DC3" layoutX="630.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="DC4" layoutX="749.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="DC5" layoutX="864.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
+      <Button fx:id="start" layoutX="309.0" layoutY="673.0" mnemonicParsing="false" onAction="#start" text="Start" />
+      <Button fx:id="resolve" disable="true" layoutX="615.0" layoutY="611.0" mnemonicParsing="false" text="Resolve" />
+   </children>
+</AnchorPane>

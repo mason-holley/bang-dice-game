@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ang.FXMLDocumentController">
+   <children>
+      <Label layoutX="557.0" layoutY="80.0" prefHeight="168.0" prefWidth="167.0" text="Bang!">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <Button layoutX="363.0" layoutY="472.0" mnemonicParsing="false" onAction="#start" prefHeight="119.0" prefWidth="194.0" text="Start">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+      <Button fx:id="exit" layoutX="724.0" layoutY="472.0" mnemonicParsing="false" onAction="#exit" prefHeight="119.0" prefWidth="194.0" text="Exit">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+      <Label layoutX="513.0" layoutY="257.0" text="Enter the number of players?">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TF" layoutX="599.0" layoutY="347.0" prefHeight="76.0" prefWidth="86.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <Label layoutX="592.0" layoutY="300.0" text="(4 to 8 players)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

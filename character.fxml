@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ang.CharacterController">
+   <children>
+      <Label layoutX="409.0" layoutY="22.0" prefHeight="77.0" prefWidth="463.0" text="Choose your character">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Label>
+      <Button fx:id="C1" layoutX="100.0" layoutY="135.0" mnemonicParsing="false" onAction="#C1" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="135.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C1_240x100.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C2" layoutX="395.0" layoutY="135.0" mnemonicParsing="false" onAction="#C2" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="368.0" AnchorPane.topAnchor="135.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C2PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C3" layoutX="690.0" layoutY="135.0" mnemonicParsing="false" onAction="#C3" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="672.0" AnchorPane.topAnchor="135.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C3PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C4" layoutX="985.0" layoutY="135.0" mnemonicParsing="false" onAction="#C4" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="976.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="135.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C4PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C5" layoutX="64.0" layoutY="280.0" mnemonicParsing="false" onAction="#C5" prefHeight="100.0" prefWidth="240.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C5PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C6" layoutX="395.0" layoutY="280.0" mnemonicParsing="false" onAction="#C6" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="368.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C6PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C7" layoutX="654.0" layoutY="280.0" mnemonicParsing="false" onAction="#C7" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="672.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C7PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C8" layoutX="949.0" layoutY="280.0" mnemonicParsing="false" onAction="#C8" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="976.0" AnchorPane.rightAnchor="64.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C8PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C9" layoutX="64.0" layoutY="425.0" mnemonicParsing="false" onAction="#C9" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="64.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C9PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C10" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" onAction="#C10" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="368.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C10PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C11" layoutX="654.0" layoutY="425.0" mnemonicParsing="false" onAction="#C11" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="672.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C11PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C12" layoutX="949.0" layoutY="425.0" mnemonicParsing="false" onAction="#C12" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="976.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C12PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C13" layoutX="64.0" layoutY="570.0" mnemonicParsing="false" onAction="#C13" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="64.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C13PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C14" layoutX="395.0" layoutY="570.0" mnemonicParsing="false" onAction="#C14" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="368.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C14PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C15" layoutX="618.0" layoutY="570.0" mnemonicParsing="false" onAction="#C15" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="672.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C15PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="C16" layoutX="913.0" layoutY="570.0" mnemonicParsing="false" onAction="#C16" prefHeight="100.0" prefWidth="240.0" AnchorPane.leftAnchor="976.0">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../C16PNG.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+   </children>
+</AnchorPane>
