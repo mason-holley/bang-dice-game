@@ -64,6 +64,7 @@ public class setup {
             examplePlayer_1.setrole(0); //Replace example player with the player character object from character class
         }
         turnOrder.set(player_position, examplePlayer_1); //Replace example player with the player character object from character class
+
         
         
     }
@@ -195,13 +196,13 @@ public class setup {
         
     }
    /**
-    * Removes a player from the array list
+    * Removes a player from the array list at a given position and updates all other character positions
     * @author Mason Holley
-    * @param player
+    * @param player_position
     * @return amount of players
     */      
- public static int removePlayer(int player){
-     turnOrder.remove(player);
+ public static int removePlayer(int player_position){
+     turnOrder.remove(player_position);
      for(int i = 0; i > turnOrder.size(); i++)
         turnOrder.get(i).setposition(i);
      return getPlayerAmount();
