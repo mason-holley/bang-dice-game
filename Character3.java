@@ -5,7 +5,6 @@
  */
 package bang._dice_game;
 import java.util.*;
-import java.util.Random; 
 import bang._dice_game.setup;
 /**
  *
@@ -15,6 +14,16 @@ public class Character3 {
     public static int charvalue,char_num, hp, arrows,position,role,playernum,playernumber,startposition,starthp;
     String name, ability;
     boolean alive, use;
+    public Character3() {
+        this.role = 0;
+        this.char_num = 0;
+        this.hp = 8;
+        this.starthp = 8;
+        this.arrows = 0;
+        this.position = 0;
+        this.startposition = 0;
+        this.alive = true;
+    }
     public Character3 (int role, int char_num, int hp,int starthp, int arrows,int position,int startposition,String name, boolean alive,int playernumber) 
     {
         this.role = role;
