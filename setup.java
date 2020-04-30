@@ -61,12 +61,9 @@ public class setup {
         Random rand = new Random();
         int player_position = rand.nextInt(turnOrder.size());
         if(player_position == 0){
-            examplePlayer_1.setrole(0); //Replace example player with the player character object from character class
+            Character3.character_choice(CharacterController.choice).setrole(1); 
         }
-        turnOrder.set(player_position, examplePlayer_1); //Replace example player with the player character object from character class
-
-        
-        
+        turnOrder.set(player_position, Character3.character_choice(CharacterController.choice));         
     }
     
    
