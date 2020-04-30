@@ -31,7 +31,7 @@ public class Dice{
      *@author Vincent Hew
      * @param self (current player: Player)
      */
-    public Dice(Player self) {
+    public Dice(Character3 self) {
         diceResult = 0;
         arrows = 9;
         dynamite = 0;
