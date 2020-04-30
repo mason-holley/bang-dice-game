@@ -1,17 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
  */
 package bang._dice_game;
 import java.util.*;
 import bang._dice_game.setup;
+
 /**
  *
  * @author Nicholas
  */
+
+/*defualt character class for use outside of Character3 file*/
+
 public class Character3 {
-    public static int charvalue,char_num, hp, arrows,position,role,playernum,playernumber,startposition,starthp;
+    public static int charvalue,char_num, hp, arrows,position,role,playernum = 1,playernumber,startposition,starthp;
     String name, ability;
     boolean alive, use;
     public Character3() {
@@ -24,6 +26,10 @@ public class Character3 {
         this.startposition = 0;
         this.alive = true;
     }
+    /*character class that holds integers to represents the role of the character, a specific number to represent the chosen character, the chosen characters starting health,
+    a int to hold the starting health for use outside of Character3, a int to hold the number of arrows that the character has at any given time, a int that holds the postion in the array list,
+    holds the origional starting postion for use outside of Character3, a string holding the name of the chosen character, a boolean to tell if the character is alive, and a int for a what bot or the 
+    player is using the character*/
     public Character3 (int role, int char_num, int hp,int starthp, int arrows,int position,int startposition,String name, boolean alive,int playernumber) 
     {
         this.role = role;
@@ -37,62 +43,94 @@ public class Character3 {
         this.playernumber = playernumber;
         
     }
+    
+    /*a method to get the position in the array list of the desired character*/
     public int getposition ()
     {
         return this.position;
     }
+    
+    /*a method to set the position in the array list of the desired character*/
     public void setposition (int newpostion)
     {
         this.position = newpostion;
     }
+    
+    /*a method to get the health of the desired character*/
     public int gethp ()
     {
         return this.hp;
     }
+    
+    /*a method to get the starting health of the desired character*/
     public int getstarthp ()
     {
         return this.starthp;
     }
+    
+    /*a method to set the health of the desired character*/
     public void sethp (int newhp)
     {
         this.hp = newhp;
     }
+    
+    /*a method to get the role of the desired character*/
      public int getrole ()
     {
         return this.role;
     }
+     
+    /*a method to set the role of the desired character*/
     public void setrole (int role)
     {
         this.role = role;
     }
+    
+    /*a method to get the number of arrows currently held by the desired character*/
+    
      public int getarrows ()
     {
         return this.arrows;
     }
+     
+    /*a method to add arrows to number of arrows currently held by the desired character*/
      public void addarrows (int newarrows)
     {
         this.arrows += newarrows;
     }
+     
+    /*a method to set the number of arrows currently held by the desired character*/
     public void setarrows (int newarrows)
     {
         this.arrows = newarrows;
     }
+    
+    /*a method to get the starting position of the desired character*/
      public int getstartposition ()
     {
         return this.startposition;
     }
+     
+    /*a method to set the starting position of the desired character*/
     public void setstartposition (int newpostion)
     {
         this.startposition = newpostion;
     }
+    
+    /*a method to get the unique number representing who the character is*/
     public int getcharnum ()
     {
         return this.char_num;
     }
+    
+    /*a mothod to set a character as dead*/
     public void setdead ()
     {
         this.alive = false;
     }
+    
+    /*IF YOU VALUE YOUR TIME READ THE COMMENT BELOW BEFORE GOING FORWARD*/
+    /*the following is 1085 lines of if statements to create a Character3 for the player, bot1, bot2, bot3, bot4, bot5, bot6, and bot7. It operates */
     public Character3 character_choice(int charvalue)
     {
         if (playernum == 1)
@@ -1177,4 +1215,4 @@ public class Character3 {
         }
         return null;
     } 
-}       
+}
