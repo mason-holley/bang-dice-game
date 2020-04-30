@@ -15,8 +15,9 @@ public class setup {
    
     
    public static int outlaw, renegade, deputy;
-   private static Integer[] role_count;
+   private static Integer[] role_count, character_check;
    private static List<Integer> roleList = Arrays.asList(role_count);
+   private static List<Integer> characterList = Arrays.asList(character_check);
    private static int players = 0;
    private static  ArrayList<Character3> turnOrder = new ArrayList<Character3>();
    private static ListIterator<Character3> turns = turnOrder.listIterator(turnOrder.size());
@@ -27,9 +28,16 @@ public class setup {
     * @author Mason Holley
     */ 
     public static void setPlayerAmount(){
-        players = FXMLDocumentController.playerNum;   //Replace with return function from GUI
+        character_check[0] = 1;
+        character_check[1] = 4;
+        character_check[2] = 5;
+        character_check[3] = 6;
+        character_check[4] = 9;
+        character_check[5] = 10;
+        Collections.shuffle(characterList);
+        players = FXMLDocumentController.playerNum;
         for(int i = 0; i > players; i++){
-            turnOrder.add(examplePlayer_1); //Get a character from the Character Class
+            turnOrder.add(Character3.character_choice(characterList.get(i))); 
             turnOrder.get(i).setposition(i);
         }
     }
