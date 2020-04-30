@@ -9,6 +9,8 @@ import java.util.Random;
  * @author vincenthew
  */
 public class Action {
+    public static Character3 winnerRenegade = new Character3();
+    public static int winCondition = 0;
     private Character3 actPlayer;
     private int optionL = 0;
     private int optionR = 0;
@@ -213,6 +215,7 @@ public class Action {
     }
     /**
      *This method is used to take amount of health point out from the player
+     * This method will also check the win condition and remove the dead player from the list
      * @author Vincent Hew
      * @param actor
      * @param hpVal (amount of health point to lose from player)
@@ -222,6 +225,15 @@ public class Action {
         if(actor.gethp() <= 0) {
             //dead condition
             actor.sethp(0);
+            actor.setdead();
+            if(actor.getrole() == 2)
+                setup.renegade--;
+            else if(actor.getrole() == 3)
+                setup.outlaw--;
+            else if(actor.getrole() == 4)
+                setup.deputy--;
+            setup.removePlayer(actor.getposition());
+            winCondition = victoryCheck();
         }
     }
     /**
@@ -308,5 +320,34 @@ public class Action {
                 sheriffPos = i;
         }
         return sheriffPos;
+    }
+    /**
+     * This method is used to check the win condition. 
+     * If it returns 0 means the game will continue and no one win,
+     * If it return 1 means sheriff and deputies win as a team
+     * If it return 2 means the specific last renegade wins
+     * If it return 3 means outlaws win as a team
+     * @author Vincent Hew
+     * @return winner
+     */
+    public static int victoryCheck() {
+        int winRole = 0;
+        //renegade win
+        if(setup.getArrayList().size() == 1 && setup.renegade == 1) {
+            winnerRenegade = setup.getArrayList().get(0);
+            winRole = winnerRenegade.getrole(); //should be 2
+            System.out.println("Renegade character: " + winnerRenegade.name + " wins!");
+        }
+        //outlaws win
+        else if(setup.getArrayList().get(searchSheriff()).alive == false && setup.outlaw != 0) {
+            System.out.println("Outlaws win!");
+            winRole = 3;
+        }
+        //sheriff and deputies win
+        else if(setup.getArrayList().get(searchSheriff()).alive == true && setup.renegade == 0 && setup.outlaw == 0) {
+            System.out.println("Sheriff and deputies win!");
+            winRole = 1;
+        }
+        return winRole;
     }
 }
