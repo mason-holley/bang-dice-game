@@ -1,16 +1,25 @@
+// CS 2435 Spring 2020
+// Nicholas Ingle
 /*
-
+    Take the value given and return a object that holds the chosen characters information
+    and provide multiple methods to interacte with said objects
  */
 package bang._dice_game;
 import java.util.*;
 import bang._dice_game.setup;
 
-/**
- *
- * @author Nicholas
- */
+/*
+Class Name: Character3
+Description of Class:   Take the value given and return a object that holds the chosen characters information
+                        and provide multiple methods to interacte with said objects
 
-/*defualt character class for use outside of Character3 file*/
+Author : Nicholas Ingle
+Contributors: Vincent Hew
+Work Done:
+Nicholas Ingle - Created main code including all if statements ,Character3 class objects and all methods to get and change values within the objects
+Vincent Hew- Created defualt Character3 constructer
+
+/*defualt character constructer for use outside of Character3 file*/
 
 public class Character3 {
     public static int charvalue,char_num, hp, arrows,position,role,playernum = 1,playernumber,startposition,starthp;
@@ -130,8 +139,12 @@ public class Character3 {
     }
     
     /*IF YOU VALUE YOUR TIME READ THE COMMENT BELOW BEFORE GOING FORWARD*/
-    /*the following is 1085 lines of if statements to create a Character3 for the player, bot1, bot2, bot3, bot4, bot5, bot6, and bot7. It operates */
-    public Character3 character_choice(int charvalue)
+    /*the following is 1085 lines of if statements to create a Character3 for the player, bot1, bot2, bot3, bot4, bot5, bot6, and bot7. It operates by interating playernum each time it is called with
+    playernum = 1 being for the player, playernum = 2 for bot1 and so forth. After the playernum if statement is found, it then has a series of if statements that checks the charvalue. Since each character
+    has a unique number so long as the same number isn't passed twice there will be no repeated characters. Each playernum if statement is the same inside with the only differences being
+    that the name of the character3 object is different along with what object is returned ie. Character3 player = new Character3 ... return player if playernum = 1 and Character3 bot1 = new Character3...
+    return bot1 if playrnum = 2. There is no code writen after these if statements.*/
+    public static Character3 character_choice(int charvalue)
     {
         if (playernum == 1)
         {
@@ -1215,4 +1228,4 @@ public class Character3 {
         }
         return null;
     } 
-}
+}       
