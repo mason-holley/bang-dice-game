@@ -14,7 +14,7 @@ import java.util.List;
 public class setup {
    
     
-   public static int outlaw, renegade, deputy;
+   public static int outlaw, renegade, deputy, player_position;
    private static Integer[] role_count, character_check;
    private static List<Integer> roleList = Arrays.asList(role_count);
    private static List<Integer> characterList = Arrays.asList(character_check);
@@ -59,7 +59,7 @@ public class setup {
     */ 
     public static void insertPlayer(){
         Random rand = new Random();
-        int player_position = rand.nextInt(turnOrder.size());
+        player_position = rand.nextInt(turnOrder.size());
         if(player_position == 0){
             Character3.character_choice(CharacterController.choice).setrole(1); 
         }
