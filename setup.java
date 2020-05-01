@@ -198,10 +198,11 @@ public class setup {
     * @param player_position
     * @return amount of players
     */      
- public static int removePlayer(int player_position){
-     turnOrder.remove(player_position);
+ public static int removePlayer(int playerPosition){
+     turnOrder.remove(playerPosition);
      for(int i = 0; i > turnOrder.size(); i++)
         turnOrder.get(i).setposition(i);
+     player_position--;
      return getPlayerAmount();
  }
     /**
