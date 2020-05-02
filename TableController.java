@@ -60,21 +60,56 @@ public class TableController implements Initializable {
     public CheckBox DC4;
     public CheckBox DC5;
     public Label HP;
+    public Label playRole;
+    public ImageView playerChar;
+    int playChoice = CharacterController.choice;
     
     
-      File f1 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Arrow.png");
-      Image arrow = new Image(f1.toURI().toString());
-      File f2 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Dynamite.png");
-      Image dyn = new Image(f2.toURI().toString());
-      File f3 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\one.png");
-      Image one = new Image(f3.toURI().toString());
-      File f4 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\two.png");
-      Image two = new Image(f4.toURI().toString());
-      File f5 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\beer.png");
-      Image beer = new Image(f5.toURI().toString());
-      File f6 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\gun.png");
-      Image gun = new Image(f6.toURI().toString());
-      
+    File f1 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Arrow.png");
+    Image arrow = new Image(f1.toURI().toString());
+    File f2 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Dynamite.png");
+    Image dyn = new Image(f2.toURI().toString());
+    File f3 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\one.png");
+    Image one = new Image(f3.toURI().toString());
+    File f4 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\two.png");
+    Image two = new Image(f4.toURI().toString());
+    File f5 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\beer.png");
+    Image beer = new Image(f5.toURI().toString());
+    File f6 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\gun.png");
+    Image gun = new Image(f6.toURI().toString());
+    File fc1 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C1.png");
+    Image temp = new Image(fc1.toURI().toString());
+    File fc2 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C2PNG.jpg");
+    Image temp2 = new Image(fc2.toURI().toString());
+    File fc3 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C3PNG.jpg");
+    Image temp3 = new Image(fc3.toURI().toString());
+    File fc4 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C4PNG.jpg");
+    Image temp4 = new Image(fc4.toURI().toString());
+    File fc5 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C5PNG.jpg");
+    Image temp5 = new Image(fc5.toURI().toString());
+    File fc6 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C6PNG.jpg");
+    Image temp6 = new Image(fc6.toURI().toString());
+    File fc7 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C7PNG.jpg");
+    Image temp7 = new Image(fc7.toURI().toString());
+    File fc8 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C8PNG.jpg");
+    Image temp8 = new Image(fc8.toURI().toString());
+    File fc9 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C9PNG.jpg");
+    Image temp9 = new Image(fc9.toURI().toString());      
+    File fc10 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C10PNG.jpg");
+    Image temp10 = new Image(fc10.toURI().toString());
+    File fc11 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C11PNG.jpg");
+    Image temp11 = new Image(fc11.toURI().toString());
+    File fc12 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C12PNG.jpg");
+    Image temp12 = new Image(fc12.toURI().toString());
+    File fc13 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C13PNG.jpg");
+    Image temp13 = new Image(fc13.toURI().toString());
+    File fc14 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C14PNG.jpg");
+    Image temp14 = new Image(fc14.toURI().toString());
+    File fc15 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C15PNG.jpg");
+    Image temp15 = new Image(fc15.toURI().toString());
+    File fc16 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\C16PNG.jpg");
+    Image temp16 = new Image(fc16.toURI().toString());
+    
     Character3 activePlayer = new Character3();
     Dice dice1 = new Dice(activePlayer);
     Dice dice2 = new Dice(activePlayer);
@@ -82,15 +117,91 @@ public class TableController implements Initializable {
     Dice dice4 = new Dice(activePlayer);
     Dice dice5 = new Dice(activePlayer);
     
-    
-    
     @FXML
     public void start(ActionEvent event) {
         HP.setText("HP: " + activePlayer.gethp());
         roll.setDisable(false);
+        playRole.setVisible(true);
         start.setVisible(false);
         start.setDisable(true);
+        setup.insertPlayer();
+        setup.giveRole();
+        int role = setup.getArrayList().get(setup.player_position).getrole();
+        for (int i = 0; i < FXMLDocumentController.playerNum; i++)
+        {
+        System.out.println(setup.getArrayList().get(i).getrole());
+        }
+    
+    switch(role) {
+        case 1:
+            playRole.setText("Role: Sheriff");
+            break;
+        case 2:
+            playRole.setText("Role: Renegade");
+            break;
+        case 3:
+            playRole.setText("Role: Outlaw");
+            break;
+        case 4: 
+            playRole.setText("Role: Deputy");
+            break;
+        default:
+            break;
+    }
         
+    switch(CharacterController.choice) {
+        case 1:
+            System.out.println(CharacterController.choice);
+            playerChar.setImage(temp);
+            break;
+        case 2:
+            playerChar.setImage(temp2);
+            break;
+        case 3:
+            playerChar.setImage(temp3);
+            break;
+        case 4:
+            playerChar.setImage(temp4);
+            break;
+        case 5:
+            playerChar.setImage(temp5);
+            break;
+        case 6:
+            playerChar.setImage(temp6);
+            break;
+        case 7:
+            playerChar.setImage(temp7);
+            break;
+        case 8:
+            playerChar.setImage(temp8);
+            break;
+        case 9:
+            playerChar.setImage(temp9);
+            break;
+        case 10:
+            playerChar.setImage(temp10);
+            break;
+        case 11:
+            playerChar.setImage(temp11);
+            break;
+        case 12:
+            playerChar.setImage(temp12);
+            break;
+        case 13:
+            playerChar.setImage(temp13);
+            break;
+        case 14:
+            playerChar.setImage(temp14);
+            break;
+        case 15:
+            playerChar.setImage(temp15);
+            break;
+        case 16:
+            playerChar.setImage(temp16);
+            break;
+        default:
+            break;
+        }
     }
     
     public void roll(ActionEvent event) {

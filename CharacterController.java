@@ -21,7 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ang.TableController;
+import javafx.scene.image.Image;
+import java.io.FileInputStream; 
+import java.io.File;
 
 /**
  * FXML Controller class
@@ -49,10 +51,12 @@ public class CharacterController implements Initializable {
     private Button C15;
     private Button C16;
     public Button close;
+    static int choice = 0;
 
     @FXML
     private void C1(ActionEvent event) {
         try {
+            choice = 1;
             Stage stage = (Stage) C1.getScene().getWindow();
             stage.close();
 
@@ -67,78 +71,258 @@ public class CharacterController implements Initializable {
     }
 
     @FXML
-    void C2(ActionEvent event) {
+    private void C2(ActionEvent event) {
+        try {
+            choice = 2;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C3(ActionEvent event) {
+    private void C3(ActionEvent event) {
+        try {
+            choice = 3;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C4(ActionEvent event) {
+    private void C4(ActionEvent event) {
+        try {
+            choice = 4;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C5(ActionEvent event) {
+    private void C5(ActionEvent event) {
+        try {
+            choice = 5;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C6(ActionEvent event) {
+    private void C6(ActionEvent event) {
+        try {
+            choice = 6;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C7(ActionEvent event) {
+    private void C7(ActionEvent event) {
+        try {
+            choice = 7;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C8(ActionEvent event) {
+    private void C8(ActionEvent event) {
+        try {
+            choice = 8;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C9(ActionEvent event) {
+    private void C9(ActionEvent event) {
+        try {
+            choice = 9;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C10(ActionEvent event) {
+    private void C10(ActionEvent event) {
+        try {
+            choice = 10;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C11(ActionEvent event) {
+    private void C11(ActionEvent event) {
+        try {
+            choice = 11;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C12(ActionEvent event) {
+    private void C12(ActionEvent event) {
+        try {
+            choice = 12;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C13(ActionEvent event) {
+    private void C13(ActionEvent event) {
+        try {
+            choice = 13;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C14(ActionEvent event) {
+    private void C14(ActionEvent event) {
+        try {
+            choice = 14;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C15(ActionEvent event) {
+    private void C15(ActionEvent event) {
+        try {
+            choice = 15;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
 
     @FXML
-    void C16(ActionEvent event) {
+    private void C16(ActionEvent event) {
+        try {
+            choice = 16;
+            Stage stage = (Stage) C1.getScene().getWindow();
+            stage.close();
 
+            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+            stage = new Stage();
+            
+            stage.setScene(new Scene(root2));
+            stage.show();
+        } catch (IOException ex) {
+           System.out.println("hoal");
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

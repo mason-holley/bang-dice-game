@@ -39,6 +39,7 @@ public class FXMLDocumentController implements Initializable {
         try {
             playerNum = Integer.parseInt(TF.getText());
             System.out.println(playerNum);
+            setup.setPlayerAmount();
             Stage stage = (Stage) exit.getScene().getWindow();
             stage.close();
             Parent root1 = FXMLLoader.load(getClass().getResource("character.fxml"));
@@ -53,7 +54,6 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     public void exit(ActionEvent event) {
-        System.out.println("Fuk Kang");
         Stage stage = (Stage) exit.getScene().getWindow();
         stage.close();
         

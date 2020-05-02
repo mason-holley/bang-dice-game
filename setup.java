@@ -1,6 +1,6 @@
 // CS 2365 OOP Spring 2020
 // Mason Holley
-package bang_game;
+package ang;
 import java.util.ListIterator;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -15,9 +15,9 @@ public class setup {
    
     
    public static int outlaw, renegade, deputy, player_position;
-   private static Integer[] role_count, character_check;
-   private static List<Integer> roleList = Arrays.asList(role_count);
-   private static List<Integer> characterList = Arrays.asList(character_check);
+   private static Integer[] character_check = new Integer[8];
+   private static List<Integer> roleList;
+   private static List<Integer> characterList;
    private static int players = 0;
    private static  ArrayList<Character3> turnOrder = new ArrayList<Character3>();
    private static ListIterator<Character3> turns = turnOrder.listIterator(turnOrder.size());
@@ -27,18 +27,25 @@ public class setup {
     * Places each of the players in the linked list and sets their position in their character object.
     * @author Mason Holley
     */ 
-    public static void setPlayerAmount(){
+    public static void setPlayerAmount(){ //come fix later
         character_check[0] = 1;
         character_check[1] = 4;
         character_check[2] = 5;
         character_check[3] = 6;
         character_check[4] = 9;
         character_check[5] = 10;
-        Collections.shuffle(characterList);
+        character_check[6] = 2;
+        character_check[7] = 3;
+        characterList = Arrays.asList(character_check);
+//        Collections.shuffle(characterList);
         players = FXMLDocumentController.playerNum;
-        for(int i = 0; i > players; i++){
+        for(int i = 0; i < players; i++){
+            System.out.println("i = " + i);
             turnOrder.add(Character3.character_choice(characterList.get(i))); 
+            System.out.println(turnOrder.get(i).name);
             turnOrder.get(i).setposition(i);
+            
+            
         }
     }
     
@@ -58,12 +65,18 @@ public class setup {
     * @author Mason Holley
     */ 
     public static void insertPlayer(){
+        System.out.println("insert player");
         Random rand = new Random();
-        player_position = rand.nextInt(turnOrder.size());
+        player_position = rand.nextInt(players);
         if(player_position == 0){
-            Character3.character_choice(CharacterController.choice).setrole(1); 
+            Character3.humanPlayer(CharacterController.choice).setrole(1); 
         }
-        turnOrder.set(player_position, Character3.character_choice(CharacterController.choice));         
+        System.out.println(1); //delete
+        turnOrder.set(player_position, Character3.humanPlayer(CharacterController.choice));         
+        for (int i = 0; i < players; i++) // delete
+        {
+            System.out.println(turnOrder.get(i).name);
+        }
     }
     
    
@@ -74,11 +87,7 @@ public class setup {
     */    
     public static void giveRole(){
     Random rand = new Random();
-       for(int i = 0; i > turnOrder.size(); i++){
-           if(i == 0){
-               turnOrder.get(i).setrole(1);
-           }
-           if(i > 0){
+    Integer[] role_count = new Integer[players -1];
                switch(getPlayerAmount()){
                    case 4:
                        renegade = 1;
@@ -131,7 +140,14 @@ public class setup {
                        role_count[6] = 4;
                        break;
                 }
-                Collections.shuffle(roleList, rand);
+                roleList = Arrays.asList(role_count);
+                Collections.shuffle(roleList);
+       for(int i = 0; i < turnOrder.size(); i++){
+           if(i == 0){
+               turnOrder.get(i).setrole(1);
+           }
+           if(i > 0){
+                
                 turnOrder.get(i).setrole(roleList.get(i-1));
            }
        }
@@ -198,11 +214,10 @@ public class setup {
     * @param player_position
     * @return amount of players
     */      
- public static int removePlayer(int playerPosition){
-     turnOrder.remove(playerPosition);
+ public static int removePlayer(int player_position){
+     turnOrder.remove(player_position);
      for(int i = 0; i > turnOrder.size(); i++)
         turnOrder.get(i).setposition(i);
-     player_position--;
      return getPlayerAmount();
  }
     /**
@@ -217,5 +232,3 @@ public class setup {
    
    
 }
-    
-
