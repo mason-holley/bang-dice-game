@@ -390,4 +390,15 @@ public class Action {
         }
         return winRole;
     }
+    public static void playerStatus() {
+        Character3 current = new Character3();
+        System.out.println(">>> Player Status <<<");
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            current = setup.getArrayList().get(i);
+            System.out.print("Player: " + current.name);
+            System.out.print(" | Role: " + current.getrole());
+            System.out.print(" | HP: " + current.gethp() + "/" + current.getstarthp());
+            System.out.println(" | Position: " + current.getposition());
+        }
+    }
 }
