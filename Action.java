@@ -265,6 +265,8 @@ public class Action {
             //dead condition
             actor.sethp(0);
             actor.setdead();
+            System.out.println("Player: " + actor.name + " is dead!");
+            System.out.println("Player alive status: " + actor.alive);
             if(actor.getrole() == 2)
                 setup.renegade--;
             else if(actor.getrole() == 3)
