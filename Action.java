@@ -116,6 +116,19 @@ public class Action {
             Decision.updateGraph(actPlayer, 0);
     }
     /**
+     * This method is used for letting human select their target
+     * @author Vincent Hew
+     * @param targetPos 
+     */
+    public void actBullet_1(int targetPos) {
+        Character3 actTarget = new Character3();
+        actTarget = setup.getArrayList().get(targetPos);
+        loseHP(setup.getArrayList().get(targetPos),1);
+        //update graph
+        if(actTarget.getrole() == 1)
+            Decision.updateGraph(actPlayer, 0);
+    }
+    /**
      *This method is used to resolve the dice effect of bull eye 2
      * which will attack the target on the left or right whose distance by 2 based on the threat level from the decision graph
      * exception: when there are only 2 or 3 total player left, it will take the same action as bull eye 1
@@ -179,6 +192,19 @@ public class Action {
         }
     }
     /**
+     * This method is used for letting human select their target
+     * @author Vincent Hew
+     * @param targetPos 
+     */
+    public void actBullet_2(int targetPos) {
+        Character3 actTarget = new Character3();
+        actTarget = setup.getArrayList().get(targetPos);
+        loseHP(setup.getArrayList().get(targetPos),1);
+        //update graph
+        if(actTarget.getrole() == 1)
+            Decision.updateGraph(actPlayer, 0);
+    }
+    /**
      *This method is used to resolve the dice effect of beer
      * which will choose one player by specific strategy and heal the player by 1 health point
      * @author Vincent Hew
@@ -211,6 +237,19 @@ public class Action {
         }
         // update graph
         if(actTarget.equals(actPlayer) == false && actTarget.getrole() == 1) 
+            Decision.updateGraph(actPlayer, 1);
+    }
+    /**
+     * This method is used for letting human select their target
+     * @author Vincent Hew
+     * @param targetPos 
+     */
+    public void actBeer(int targetPos) {
+        Character3 actTarget = new Character3();
+        actTarget = setup.getArrayList().get(targetPos);
+        gainHP(setup.getArrayList().get(targetPos),1);
+        //update graph
+        if(actTarget.equals(actPlayer) == false && actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 1);
     }
     /**

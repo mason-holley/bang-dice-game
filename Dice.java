@@ -25,6 +25,7 @@ public class Dice{
     private static int firstRoll;
     public static int rerollCount;
     private Action diceAct;
+    private Character3 actPlayer;
     /**
      * This constructor is used to create a dice object with default attributes
      *@author Vincent Hew
@@ -41,6 +42,7 @@ public class Dice{
         solveCount = 0;
         firstRoll = 0;
         diceAct = new Action(self);
+        actPlayer = self;
     }
     /**
      *This method is used to roll the single dice and resolve after the dice is locked
@@ -119,17 +121,27 @@ public class Dice{
      * @author Vincent Hew
      */
     private void diceResolve(){
+        int temp = 0;   //delete this after this is replace with value from gui
         solveCount++;
         if(solveCount == 1) {
             switch(diceResult) {
                 case 3:
-                    diceAct.actBullet_1();
+                    if(setup.player_position == actPlayer.getposition())
+                        diceAct.actBullet_1(temp);
+                    else
+                        diceAct.actBullet_1();
                     break;
                 case 4:
-                    diceAct.actBullet_2();
+                    if(setup.player_position == actPlayer.getposition())
+                        diceAct.actBullet_2(temp);
+                    else
+                        diceAct.actBullet_2();
                     break;
                 case 5:
-                    diceAct.actBeer();
+                    if(setup.player_position == actPlayer.getposition())
+                        diceAct.actBeer(temp);
+                    else
+                        diceAct.actBeer();
                     break;
                 case 6:
                     gatling++;
