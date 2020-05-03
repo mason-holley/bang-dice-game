@@ -1,7 +1,7 @@
 //CS2365 OOP Spring 2020 
 //Project 3: bang the dice game
 
-package bang_game;
+package ang;
 import java.util.*;
 
 /**

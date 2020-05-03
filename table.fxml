@@ -21,12 +21,8 @@
       <ImageView fx:id="d3" fitHeight="92.0" fitWidth="55.0" layoutX="613.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="d4" fitHeight="92.0" fitWidth="55.0" layoutX="732.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="d5" fitHeight="92.0" fitWidth="55.0" layoutX="847.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="100.0" fitWidth="240.0" layoutX="23.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../C1PNG.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutX="23.0" layoutY="623.0" prefHeight="75.0" prefWidth="118.0" text="Role:">
+      <ImageView fx:id="playerChar" fitHeight="100.0" fitWidth="240.0" layoutX="23.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="playRole" layoutX="23.0" layoutY="623.0" prefHeight="75.0" prefWidth="264.0" text="Role:" visible="false">
          <font>
             <Font size="25.0" />
          </font>
@@ -38,13 +34,12 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#157c14" height="272.0" layoutX="279.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" width="722.0" />
-      <Label alignment="CENTER" layoutX="595.0" layoutY="475.0" prefHeight="45.0" prefWidth="91.0" text="You" />
-      <Button fx:id="bot1" disable="true" layoutX="1036.0" layoutY="400.0" mnemonicParsing="false" text="Bot 1" />
-      <Button fx:id="bot2" disable="true" layoutX="1036.0" layoutY="232.0" mnemonicParsing="false" text="Bot 2" />
-      <Button fx:id="bot3" disable="true" layoutX="795.0" layoutY="142.0" mnemonicParsing="false" text="Bot 3" />
-      <Button fx:id="bot4" disable="true" layoutX="445.0" layoutY="142.0" mnemonicParsing="false" text="Bot 4" />
-      <Button fx:id="bot5" disable="true" layoutX="196.0" layoutY="232.0" mnemonicParsing="false" text="Bot 5" />
-      <Button fx:id="bot6" disable="true" layoutX="196.0" layoutY="400.0" mnemonicParsing="false" text="Bot 6" />
+      <Button fx:id="bot1" disable="true" layoutX="1036.0" layoutY="380.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 1" visible="false" />
+      <Button fx:id="bot2" disable="true" layoutX="1036.0" layoutY="200.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 2" visible="false" />
+      <Button fx:id="bot3" disable="true" layoutX="715.0" layoutY="120.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 3" visible="false" />
+      <Button fx:id="bot4" disable="true" layoutX="369.0" layoutY="120.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 4" visible="false" />
+      <Button fx:id="bot5" disable="true" layoutX="62.0" layoutY="200.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 5" visible="false" />
+      <Button fx:id="bot6" disable="true" layoutX="62.0" layoutY="358.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 6" visible="false" />
       <Button fx:id="reroll" disable="true" layoutX="925.0" layoutY="623.0" mnemonicParsing="false" onAction="#reroll" prefHeight="75.0" prefWidth="97.0" text="Reroll?" />
       <CheckBox fx:id="DC1" layoutX="400.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
       <CheckBox fx:id="DC2" layoutX="518.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
@@ -53,5 +48,8 @@
       <CheckBox fx:id="DC5" layoutX="864.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
       <Button fx:id="start" layoutX="309.0" layoutY="673.0" mnemonicParsing="false" onAction="#start" text="Start" />
       <Button fx:id="resolve" disable="true" layoutX="615.0" layoutY="611.0" mnemonicParsing="false" text="Resolve" />
+      <Button fx:id="bot7" disable="true" layoutX="369.0" layoutY="485.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 7" visible="false" />
+      <Button fx:id="player" disable="true" layoutX="715.0" layoutY="485.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="You" visible="false" />
+      <Button fx:id="nextTurn" disable="true" layoutX="778.0" layoutY="624.0" mnemonicParsing="false" onAction="#nextTurn" prefHeight="75.0" prefWidth="112.0" text="End Turn" />
    </children>
 </AnchorPane>

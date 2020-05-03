@@ -27,6 +27,10 @@ import java.util.Random;
 import javafx.scene.image.Image;
 import java.io.FileInputStream; 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import javafx.application.Platform;
+
+
 
 /**
  * FXML Controller class
@@ -40,6 +44,9 @@ public class TableController implements Initializable {
 
     @FXML
     public ImageView d2;
+    public Button nextTurn;
+    public Button player;
+    public Button bot7;
     public Button bot5;
     public ImageView d3;
     public Button bot6;
@@ -63,6 +70,8 @@ public class TableController implements Initializable {
     public Label playRole;
     public ImageView playerChar;
     int playChoice = CharacterController.choice;
+    int playPos = 0;
+    int gamePos = 0;
     
     
     File f1 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Arrow.png");
@@ -117,91 +126,90 @@ public class TableController implements Initializable {
     Dice dice4 = new Dice(activePlayer);
     Dice dice5 = new Dice(activePlayer);
     
+    
     @FXML
-    public void start(ActionEvent event) {
-        HP.setText("HP: " + activePlayer.gethp());
+    public void start(ActionEvent event) throws InterruptedException {
+//        HP.setText("HP: " + activePlayer.gethp());
         roll.setDisable(false);
         playRole.setVisible(true);
         start.setVisible(false);
         start.setDisable(true);
+        nextTurn.setDisable(false);
         setup.insertPlayer();
         setup.giveRole();
+        activePlayer = setup.getArrayList().get(0);
+        playerCheck(activePlayer);
         int role = setup.getArrayList().get(setup.player_position).getrole();
-        for (int i = 0; i < FXMLDocumentController.playerNum; i++)
-        {
-        System.out.println(setup.getArrayList().get(i).getrole());
-        }
-    
-    switch(role) {
-        case 1:
-            playRole.setText("Role: Sheriff");
-            break;
-        case 2:
-            playRole.setText("Role: Renegade");
-            break;
-        case 3:
-            playRole.setText("Role: Outlaw");
-            break;
-        case 4: 
-            playRole.setText("Role: Deputy");
-            break;
-        default:
-            break;
-    }
+        System.out.println(setup.player_position);
+        for (int i = 0; i < FXMLDocumentController.playerNum; i++) {
+            System.out.println(setup.getArrayList().get(i).getrole());
+            int compRole = setup.getArrayList().get(i).getrole();
+            String CPUrole = checkRole(compRole);
+            if (i == 0) {
+                bot1.setVisible(true);
+                if (i == setup.player_position)
+                    bot1.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    bot1.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 1) {
+                bot2.setVisible(true);
+                if (i == setup.player_position)
+                    bot2.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    bot2.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 2) {
+                bot3.setVisible(true);
+                if (i == setup.player_position)
+                    bot3.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    bot3.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 3) {
+                bot4.setVisible(true);
+                if (i == setup.player_position)
+                    bot4.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    bot4.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 4) {
+                bot5.setVisible(true);
+                if (i == setup.player_position)
+                    bot5.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else 
+                    bot5.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 5) {
+                bot6.setVisible(true);
+                if (i == setup.player_position)
+                    bot6.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    bot6.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 6) {
+                bot7.setVisible(true);
+                if (i == setup.player_position)
+                    bot7.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    bot7.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
+            if (i == 7) {
+                player.setVisible(true);
+                if (i == setup.player_position)
+                    player.setText(setup.getArrayList().get(i).name + checkPlayRole(role) + "\nHP: " + setup.getArrayList().get(i).gethp());
+                else
+                    player.setText(setup.getArrayList().get(i).name + CPUrole + "\nHP: " + setup.getArrayList().get(i).gethp());
+            }
         
-    switch(CharacterController.choice) {
-        case 1:
-            System.out.println(CharacterController.choice);
-            playerChar.setImage(temp);
-            break;
-        case 2:
-            playerChar.setImage(temp2);
-            break;
-        case 3:
-            playerChar.setImage(temp3);
-            break;
-        case 4:
-            playerChar.setImage(temp4);
-            break;
-        case 5:
-            playerChar.setImage(temp5);
-            break;
-        case 6:
-            playerChar.setImage(temp6);
-            break;
-        case 7:
-            playerChar.setImage(temp7);
-            break;
-        case 8:
-            playerChar.setImage(temp8);
-            break;
-        case 9:
-            playerChar.setImage(temp9);
-            break;
-        case 10:
-            playerChar.setImage(temp10);
-            break;
-        case 11:
-            playerChar.setImage(temp11);
-            break;
-        case 12:
-            playerChar.setImage(temp12);
-            break;
-        case 13:
-            playerChar.setImage(temp13);
-            break;
-        case 14:
-            playerChar.setImage(temp14);
-            break;
-        case 15:
-            playerChar.setImage(temp15);
-            break;
-        case 16:
-            playerChar.setImage(temp16);
-            break;
-        default:
-            break;
         }
+        diceList.add(dice1);
+        diceList.add(dice2);
+        diceList.add(dice3);
+        diceList.add(dice4);
+        diceList.add(dice5);
+        
+        turn();
     }
     
     public void roll(ActionEvent event) {
@@ -211,11 +219,6 @@ public class TableController implements Initializable {
         DC3.setVisible(true);
         DC4.setVisible(true);
         DC5.setVisible(true);
-        diceList.add(dice1);
-        diceList.add(dice2);
-        diceList.add(dice3);
-        diceList.add(dice4);
-        diceList.add(dice5);
         resolve.setDisable(false);
         
         reroll.setDisable(false);
@@ -353,6 +356,11 @@ public class TableController implements Initializable {
         if (Dice.rerollCount == 2)
         {
            reroll.setDisable(true);
+           DC1.setVisible(false);
+           DC2.setVisible(false);
+           DC3.setVisible(false);
+           DC4.setVisible(false);
+           DC5.setVisible(false);
         }
         if (DC1.isSelected())
         {
@@ -499,11 +507,299 @@ public class TableController implements Initializable {
         }
     }
     
+    public void nextTurn(ActionEvent event) throws InterruptedException {
+        turn();
+    }
+    
+//    public void firstTurns() {
+//        playPos = setup.player_position;
+//
+//            activePlayer = setup.getArrayList().get(gamePos);
+//            playerCheck(activePlayer);
+//            System.out.println(activePlayer.getcharnum());
+//            System.out.println("firstTurns " + gamePos + " " + playPos);
+//            
+//            gamePos++;
+//    }
+    public void turn() {
+        playPos = setup.player_position;
+        
+        if (gamePos != playPos) {
+            reroll.setDisable(true);
+            resolve.setDisable(true);
+            activePlayer = setup.getArrayList().get(gamePos);
+            playerCheck(activePlayer);
+            roll.setDisable(true);
+            dice1 = new Dice(activePlayer);
+            dice2 = new Dice(activePlayer);
+            dice3 = new Dice(activePlayer);
+            dice4 = new Dice(activePlayer);
+            dice5 = new Dice(activePlayer);
+            dice1.resetDice();
+            dice2.resetDice();
+            dice3.resetDice();
+            dice4.resetDice();
+            dice5.resetDice();
+            DC1.setVisible(false);
+            DC2.setVisible(false);
+            DC3.setVisible(false);
+            DC4.setVisible(false);
+            DC5.setVisible(false);
+            dice1.rollDice();
+        switch (dice1.getDice()) {
+            case 1:
+                d1.setImage(arrow);
+                break;
+            case 2:
+                d1.setImage(dyn);
+                DC1.setVisible(false);
+                break;
+            case 3:
+                d1.setImage(one);
+                break;
+            case 4:
+                d1.setImage(two);
+                break;
+            case 5:
+                d1.setImage(beer);
+                break;
+            case 6:
+                d1.setImage(gun);
+                break;
+            default:
+                break;
+        }
+        
+        dice2.rollDice();
+        
+        switch (dice2.getDice()) {
+            case 1:
+                d2.setImage(arrow);
+                break;
+            case 2:
+                d2.setImage(dyn);
+                DC2.setVisible(false);
+                break;
+            case 3:
+                d2.setImage(one);
+                break;
+            case 4:
+                d2.setImage(two);
+                break;
+            case 5:
+                d2.setImage(beer);
+                break;
+            case 6:
+                d2.setImage(gun);
+                break;
+            default:
+                break;
+        }
+        dice3.rollDice();
+        
+        switch (dice3.getDice()) {
+            case 1:
+                d3.setImage(arrow);
+                break;
+            case 2:
+                d3.setImage(dyn);
+                DC3.setVisible(false);
+                break;
+            case 3:
+                d3.setImage(one);
+                break;
+            case 4:
+                d3.setImage(two);
+                break;
+            case 5:
+                d3.setImage(beer);
+                break;
+            case 6:
+                d3.setImage(gun);
+                break;
+            default:
+                break;
+        }
+        
+        dice4.rollDice();
+        
+        switch (dice4.getDice()) {
+            case 1:
+                d4.setImage(arrow);
+                break;
+            case 2:
+                d4.setImage(dyn);
+                DC4.setVisible(false);
+                break;
+            case 3:
+                d4.setImage(one);
+                break;
+            case 4:
+                d4.setImage(two);
+                break;
+            case 5:
+                d4.setImage(beer);
+                break;
+            case 6:
+                d4.setImage(gun);
+                break;
+            default:
+                break;
+        }
+        dice5.rollDice();
+        
+        switch (dice5.getDice()) {
+            case 1:
+                d5.setImage(arrow);
+                break;
+            case 2:
+                d5.setImage(dyn);
+                DC5.setVisible(false);
+                break;
+            case 3:
+                d5.setImage(one);
+                break;
+            case 4:
+                d5.setImage(two);
+                break;
+            case 5:
+                d5.setImage(beer);
+                break;
+            case 6:
+                d5.setImage(gun);
+                break;
+            default:
+                break;
+        }
+        }
+        else {
+            activePlayer = setup.getArrayList().get(gamePos);
+            playerCheck(activePlayer);
+            roll.setDisable(false);
+        }
+        gamePos++;
+        if (gamePos > FXMLDocumentController.playerNum-1) {
+            gamePos = 0;
+        }
+        
+        if (Action.winCondition != 0) {
+            nextTurn.setDisable(true);
+            roll.setDisable(true);
+            resolve.setDisable(true);
+            switch(Action.winCondition) {
+                case 1:
+                    System.out.println("Sheriff and Deputys Win!");
+                    break;
+                case 2:
+                    System.out.println("Renegades Win!");
+                    break;
+                case 3:
+                    System.out.println("Outlaws Win!");
+                    break;
+            }
+        }
+
+    }
+    
     public void resolve(ActionEvent event) {
         Dice.globalLockDown = true;
         for (int i = 0; i < 5; i++)
         {
             diceList.get(i).rollDice();
+        }
+    }
+    
+    public String checkPlayRole(int x) {
+        switch(x) {
+            case 1:
+                return("(You) Sheriff");
+            case 2:
+                return("(You) Renegade");
+            case 3:
+                return("(You) Outlaw");
+            case 4: 
+                return("(You) Deputy");
+            default:
+                return "";
+        }
+
+    }
+    
+    public String checkRole(int x) {
+        switch(x) {
+            case 1:
+                return(" Sheriff");
+//            case 2:
+//                return(" Renegade");
+//            case 3:
+//                return(" Outlaw");
+//            case 4: 
+//                return(" Deputy");
+            default:
+                return "";
+        }
+    }
+    
+    public void playerCheck(Character3 curPlay) {
+        HP.setText("HP: " + curPlay.gethp());
+        int x = curPlay.getrole();
+        if (x == 1)
+        {
+            playRole.setText("Role: Sheriff");
+        }
+        else
+            playRole.setText("");
+        switch(curPlay.getcharnum()) {
+        case 1:
+            playerChar.setImage(temp);
+            break;
+        case 2:
+            playerChar.setImage(temp2);
+            break;
+        case 3:
+            playerChar.setImage(temp3);
+            break;
+        case 4:
+            playerChar.setImage(temp4);
+            break;
+        case 5:
+            playerChar.setImage(temp5);
+            break;
+        case 6:
+            playerChar.setImage(temp6);
+            break;
+        case 7:
+            playerChar.setImage(temp7);
+            break;
+        case 8:
+            playerChar.setImage(temp8);
+            break;
+        case 9:
+            playerChar.setImage(temp9);
+            break;
+        case 10:
+            playerChar.setImage(temp10);
+            break;
+        case 11:
+            playerChar.setImage(temp11);
+            break;
+        case 12:
+            playerChar.setImage(temp12);
+            break;
+        case 13:
+            playerChar.setImage(temp13);
+            break;
+        case 14:
+            playerChar.setImage(temp14);
+            break;
+        case 15:
+            playerChar.setImage(temp15);
+            break;
+        case 16:
+            playerChar.setImage(temp16);
+            break;
+        default:
+            break;
         }
     }
 

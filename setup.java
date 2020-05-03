@@ -37,7 +37,7 @@ public class setup {
         character_check[6] = 2;
         character_check[7] = 3;
         characterList = Arrays.asList(character_check);
-//        Collections.shuffle(characterList);
+        Collections.shuffle(characterList);
         players = FXMLDocumentController.playerNum;
         for(int i = 0; i < players; i++){
             System.out.println("i = " + i);
@@ -214,9 +214,11 @@ public class setup {
     * @param player_position
     * @return amount of players
     */      
- public static int removePlayer(int player_position){
-     turnOrder.remove(player_position);
-     for(int i = 0; i > turnOrder.size(); i++)
+ public static int removePlayer(int playPosition){
+     turnOrder.remove(playPosition);
+     if (player_position > playPosition)
+         player_position--;
+     for(int i = 0; i < turnOrder.size(); i++)
         turnOrder.get(i).setposition(i);
      return getPlayerAmount();
  }

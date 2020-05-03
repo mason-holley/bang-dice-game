@@ -1,5 +1,3 @@
-//CS2365 OOP Spring 2020 
-//Project 3: bang the dice game
 /*
  *  1 = arrow
  *  2 = Dynamite 
@@ -8,12 +6,13 @@
  *  5 = beer
  *  6 = gatling
 */
-package bang_game;
+package ang;
+
 import java.util.Random;
 
 /**
- *This class is used to implement the die
- * @author Vincent Hew
+ *
+ * @author vincenthew
  */
 public class Dice{
     private int diceResult;
@@ -86,8 +85,8 @@ public class Dice{
                     if(dynamite >= 3 && firstRoll == 5) {
                         globalLockDown = true;
                         diceAct.actDynamite();
-                        for(int i = 0; i < Bang_game.diceList.size(); i++) {
-                            Bang_game.diceList.get(i).rollDice();
+                        for(int i = 0; i < TableController.diceList.size(); i++) {
+                            TableController.diceList.get(i).rollDice();
                         }
                     }
                     break;
