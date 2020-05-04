@@ -122,8 +122,12 @@ public class Action {
      */
     public void actBullet_1(int targetPos) {
         Character3 actTarget = new Character3();
-        actTarget = setup.getArrayList().get(targetPos);
-        loseHP(setup.getArrayList().get(targetPos),1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getstartposition() == targetPos) {
+                actTarget = setup.getArrayList().get(i);
+            }
+        }
+        loseHP(setup.getArrayList().get(actTarget.getposition()),1);
         //update graph
         if(actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 0);
@@ -198,8 +202,12 @@ public class Action {
      */
     public void actBullet_2(int targetPos) {
         Character3 actTarget = new Character3();
-        actTarget = setup.getArrayList().get(targetPos);
-        loseHP(setup.getArrayList().get(targetPos),1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getstartposition() == targetPos) {
+                actTarget = setup.getArrayList().get(i);
+            }
+        }
+        loseHP(setup.getArrayList().get(actTarget.getposition()),1);
         //update graph
         if(actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 0);
@@ -246,8 +254,12 @@ public class Action {
      */
     public void actBeer(int targetPos) {
         Character3 actTarget = new Character3();
-        actTarget = setup.getArrayList().get(targetPos);
-        gainHP(setup.getArrayList().get(targetPos),1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getstartposition() == targetPos) {
+                actTarget = setup.getArrayList().get(i);
+            }
+        }
+        gainHP(setup.getArrayList().get(actTarget.getposition()),1);
         //update graph
         if(actTarget.equals(actPlayer) == false && actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 1);
