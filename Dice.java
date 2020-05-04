@@ -25,7 +25,7 @@ public class Dice{
     private static int firstRoll;
     public static int rerollCount;
     private Action diceAct;
-    private Character3 actPlayer;
+    private Character3 actPlayer = new Character3();
     /**
      * This constructor is used to create a dice object with default attributes
      *@author Vincent Hew
@@ -121,27 +121,36 @@ public class Dice{
      * @author Vincent Hew
      */
     private void diceResolve(){
-        int temp = 0;   //delete this after this is replace with value from gui
+  //delete this after this is replace with value from gui
         solveCount++;
         if(solveCount == 1) {
+            System.out.println("Dice Result = " + diceResult);
+            System.out.println("Setup " + TableController.gamePos);
+            System.out.println("Act P " +TableController.playPos);
             switch(diceResult) {
                 case 3:
-                    if(setup.player_position == actPlayer.getposition())
-                        diceAct.actBullet_1(temp);
-                    else
+                    if(TableController.gamePos == TableController.playPos) {
+                        System.out.println("Human Target Pos = " + TableController.targetPos);
+                        diceAct.actBullet_1(TableController.targetPos); }
+                    else{
                         diceAct.actBullet_1();
+                        System.out.println("Bot Target Pos = " + TableController.targetPos);}
                     break;
                 case 4:
-                    if(setup.player_position == actPlayer.getposition())
-                        diceAct.actBullet_2(temp);
-                    else
+                    if(TableController.gamePos == TableController.playPos) {
+                        System.out.println("Human Target Pos = " + TableController.targetPos);
+                        diceAct.actBullet_2(TableController.targetPos); }
+                    else {
                         diceAct.actBullet_2();
+                    System.out.println("Bot Target Pos = " + TableController.targetPos);}
                     break;
                 case 5:
-                    if(setup.player_position == actPlayer.getposition())
-                        diceAct.actBeer(temp);
-                    else
+                    if(TableController.gamePos == TableController.playPos) {
+                        System.out.println("Human Target Pos = " + TableController.targetPos);
+                        diceAct.actBeer(TableController.targetPos); }
+                        else {
                         diceAct.actBeer();
+                        System.out.println("Bot Target Pos = " + TableController.targetPos);}
                     break;
                 case 6:
                     gatling++;

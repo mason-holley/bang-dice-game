@@ -22,6 +22,7 @@ public class setup {
    private static  ArrayList<Character3> turnOrder = new ArrayList<Character3>();
    private static ListIterator<Character3> turns = turnOrder.listIterator(turnOrder.size());
    public static Character3 examplePlayer_1 = new Character3(0, 0, 8, 0, 0, 0, 0, "Calamity Janet", true, 0);
+   public static int oldPosition;
 
    /**
     * Places each of the players in the linked list and sets their position in their character object.
@@ -40,10 +41,9 @@ public class setup {
         Collections.shuffle(characterList);
         players = FXMLDocumentController.playerNum;
         for(int i = 0; i < players; i++){
-            System.out.println("i = " + i);
-            turnOrder.add(Character3.character_choice(characterList.get(i))); 
-            System.out.println(turnOrder.get(i).name);
+            turnOrder.add(Character3.character_choice(characterList.get(i)));
             turnOrder.get(i).setposition(i);
+            turnOrder.get(i).setstartposition(i);
             
             
         }
@@ -65,18 +65,18 @@ public class setup {
     * @author Mason Holley
     */ 
     public static void insertPlayer(){
-        System.out.println("insert player");
         Random rand = new Random();
         player_position = rand.nextInt(players);
         if(player_position == 0){
             Character3.humanPlayer(CharacterController.choice).setrole(1); 
         }
-        System.out.println(1); //delete
         turnOrder.set(player_position, Character3.humanPlayer(CharacterController.choice));         
         for (int i = 0; i < players; i++) // delete
         {
             System.out.println(turnOrder.get(i).name);
         }
+        turnOrder.get(player_position).setposition(player_position);
+        turnOrder.get(player_position).setstartposition(player_position);
     }
     
    
@@ -216,6 +216,7 @@ public class setup {
     */      
  public static int removePlayer(int playPosition){
      turnOrder.remove(playPosition);
+     FXMLDocumentController.playerNum--;
      if (player_position > playPosition)
          player_position--;
      for(int i = 0; i < turnOrder.size(); i++)

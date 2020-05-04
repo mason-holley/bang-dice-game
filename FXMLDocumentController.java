@@ -38,7 +38,6 @@ public class FXMLDocumentController implements Initializable {
     private void start(ActionEvent event) {
         try {
             playerNum = Integer.parseInt(TF.getText());
-            System.out.println(playerNum);
             setup.setPlayerAmount();
             Stage stage = (Stage) exit.getScene().getWindow();
             stage.close();

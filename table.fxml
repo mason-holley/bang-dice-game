@@ -47,9 +47,17 @@
       <CheckBox fx:id="DC4" layoutX="749.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
       <CheckBox fx:id="DC5" layoutX="864.0" layoutY="32.0" mnemonicParsing="false" visible="false" />
       <Button fx:id="start" layoutX="309.0" layoutY="673.0" mnemonicParsing="false" onAction="#start" text="Start" />
-      <Button fx:id="resolve" disable="true" layoutX="615.0" layoutY="611.0" mnemonicParsing="false" text="Resolve" />
+      <Button fx:id="resolve" disable="true" layoutX="585.0" layoutY="636.0" mnemonicParsing="false" onAction="#resolve" text="Resolve" />
       <Button fx:id="bot7" disable="true" layoutX="369.0" layoutY="485.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="Bot 7" visible="false" />
       <Button fx:id="player" disable="true" layoutX="715.0" layoutY="485.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="187.0" text="You" visible="false" />
       <Button fx:id="nextTurn" disable="true" layoutX="778.0" layoutY="624.0" mnemonicParsing="false" onAction="#nextTurn" prefHeight="75.0" prefWidth="112.0" text="End Turn" />
+      <CheckBox fx:id="pos3" layoutX="456.0" layoutY="165.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos5" layoutX="145.0" layoutY="403.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos4" layoutX="145.0" layoutY="244.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos6" layoutX="452.0" layoutY="530.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos7" layoutX="798.0" layoutY="530.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos0" layoutX="1119.0" layoutY="425.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos1" layoutX="1119.0" layoutY="244.0" mnemonicParsing="false" visible="false" />
+      <CheckBox fx:id="pos2" layoutX="798.0" layoutY="165.0" mnemonicParsing="false" visible="false" />
    </children>
 </AnchorPane>

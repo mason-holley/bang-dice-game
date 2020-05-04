@@ -142,7 +142,6 @@ public class Character3 {
     return bot1 if playrnum = 2. There is no code writen after these if statements.*/
     public static Character3 character_choice(int charvalue)
     {
-        System.out.println("playernum = " + playernum + " Charvalue = " + charvalue);
         if (playernum == 1)
         {
             if (charvalue == 1)
@@ -1231,7 +1230,6 @@ public class Character3 {
             {
                 Character3 player = new Character3 (0, 1, 8,8, 0,0,0,"BART CASSIDY (8)", true,0);
                 playernum += 1;
-                System.out.println("this one");
                 return player;
             }
             if (charvalue == 2)
