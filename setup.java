@@ -14,7 +14,7 @@ import java.util.List;
 public class setup {
    
     
-   public static int outlaw, renegade, deputy, player_position, sheriff;
+   public static int outlaw, renegade, deputy, player_position;
    private static Integer[] character_check = new Integer[8];
    private static List<Integer> roleList;
    private static List<Integer> characterList;
@@ -22,7 +22,6 @@ public class setup {
    private static  ArrayList<Character3> turnOrder = new ArrayList<Character3>();
    private static ListIterator<Character3> turns = turnOrder.listIterator(turnOrder.size());
    public static Character3 examplePlayer_1 = new Character3(0, 0, 8, 0, 0, 0, 0, "Calamity Janet", true, 0);
-   public static int oldPosition;
 
    /**
     * Places each of the players in the linked list and sets their position in their character object.
@@ -41,9 +40,10 @@ public class setup {
         Collections.shuffle(characterList);
         players = FXMLDocumentController.playerNum;
         for(int i = 0; i < players; i++){
-            turnOrder.add(Character3.character_choice(characterList.get(i)));
+            System.out.println("i = " + i);
+            turnOrder.add(Character3.character_choice(characterList.get(i))); 
+            System.out.println(turnOrder.get(i).name);
             turnOrder.get(i).setposition(i);
-            turnOrder.get(i).setstartposition(i);
             
             
         }
@@ -65,18 +65,18 @@ public class setup {
     * @author Mason Holley
     */ 
     public static void insertPlayer(){
+        System.out.println("insert player");
         Random rand = new Random();
         player_position = rand.nextInt(players);
         if(player_position == 0){
             Character3.humanPlayer(CharacterController.choice).setrole(1); 
         }
+        System.out.println(1); //delete
         turnOrder.set(player_position, Character3.humanPlayer(CharacterController.choice));         
         for (int i = 0; i < players; i++) // delete
         {
             System.out.println(turnOrder.get(i).name);
         }
-        turnOrder.get(player_position).setposition(player_position);
-        turnOrder.get(player_position).setstartposition(player_position);
     }
     
    
@@ -90,7 +90,6 @@ public class setup {
     Integer[] role_count = new Integer[players -1];
                switch(getPlayerAmount()){
                    case 4:
-                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 2;
@@ -99,7 +98,6 @@ public class setup {
                        deputy = 0;
                        break;
                    case 5:
-                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 2;
@@ -109,7 +107,6 @@ public class setup {
                        role_count[3] = 4;
                        break;
                    case 6:
-                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 3;
@@ -120,7 +117,6 @@ public class setup {
                        role_count[4] = 4;
                        break;
                    case 7:
-                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 3;
@@ -132,7 +128,6 @@ public class setup {
                        role_count[5] = 4;
                        break;
                    case 8:
-                       sheriff = 1;
                        renegade = 2;
                        role_count[0] = 2;
                        role_count[1] = 2;
@@ -220,8 +215,16 @@ public class setup {
     * @return amount of players
     */      
  public static int removePlayer(int playPosition){
+     //Vulture Sam's Special Ability
+     int samHP;
+     if(SpecialAbilities.VultureSam() != -1){
+         samHP = turnOrder.get(SpecialAbilities.VultureSam()).gethp();
+         if(samHP < 0){
+             turnOrder.get(SpecialAbilities.VultureSam()).sethp(+2);
+         }
+     }
+     
      turnOrder.remove(playPosition);
-     FXMLDocumentController.playerNum--;
      if (player_position > playPosition)
          player_position--;
      for(int i = 0; i < turnOrder.size(); i++)
