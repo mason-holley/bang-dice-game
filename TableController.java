@@ -81,9 +81,9 @@ public class TableController implements Initializable {
     public Label playRole;
     public ImageView playerChar;
     int playChoice = CharacterController.choice;
-    static int playPos = 0;
-    static int gamePos = 0;
-    static int targetPos = 0;
+    public static int playPos = 0;
+    public static int gamePos = 0;
+    public static int targetPos = 0;
     static int ex = 0;
     
     
