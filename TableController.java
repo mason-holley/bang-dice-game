@@ -45,6 +45,7 @@ public class TableController implements Initializable {
 
     @FXML
     public ImageView d2;
+    public Button exit;
     public Button nextTurn;
     public Button player;
     public Button bot7;
@@ -76,12 +77,14 @@ public class TableController implements Initializable {
     public CheckBox pos6;
     public CheckBox pos7;
     public Label HP;
+    public Label mainText;
     public Label playRole;
     public ImageView playerChar;
     int playChoice = CharacterController.choice;
     static int playPos = 0;
     static int gamePos = 0;
     static int targetPos = 0;
+    static int ex = 0;
     
     
     File f1 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Arrow.png");
@@ -533,14 +536,24 @@ public class TableController implements Initializable {
         diceList.set(2, dice3);
         diceList.set(3, dice4);
         diceList.set(4, dice5);
+        DC1.setSelected(false);
+        DC2.setSelected(false);
+        DC3.setSelected(false);
+        DC4.setSelected(false);
+        DC5.setSelected(false);
     }
     
     public void nextTurn(ActionEvent event) throws InterruptedException {
         turn();
     }
     
-    public void turn() {
+    public void turn() throws InterruptedException {
+        
         playPos = setup.player_position;
+        
+        if (gamePos > FXMLDocumentController.playerNum-1) {
+            gamePos = 0;
+        }
         
         if (gamePos != playPos) {
             reroll.setDisable(true);
@@ -697,16 +710,24 @@ public class TableController implements Initializable {
             
         Dice.globalLockDown = true;
         dice1.rollDice();
+        checkEnd();
         dice2.rollDice();
+        checkEnd();
         dice3.rollDice();
+        checkEnd();
         dice4.rollDice();
+        checkEnd();
         dice5.rollDice();
+        checkEnd();
         for(int i = 0; i < 5; i++) {
             System.out.println(diceList.get(i).getDice());
             }
         playerCheck(activePlayer);
         Action.playerStatus();
         gamePos++;
+        if (setup.getArrayList().get(setup.player_position).alive == false) {
+            setup.player_position = -1;
+        }
         }
         else {
             nextTurn.setDisable(true);
@@ -727,30 +748,14 @@ public class TableController implements Initializable {
             gamePos = 0;
         }
         
-        if (Action.winCondition != 0) {
-            nextTurn.setDisable(true);
-            roll.setDisable(true);
-            resolve.setDisable(true);
-            switch(Action.winCondition) {
-                case 1:
-                    System.out.println("Sheriff and Deputys Win!");
-                    break;
-                case 2:
-                    System.out.println("Renegades Win!");
-                    break;
-                case 3:
-                    System.out.println("Outlaws Win!");
-                    break;
-            }
-        }
-        System.out.println("Setup " + TableController.gamePos);
-            System.out.println("Act P " +TableController.playPos);
+        System.out.println("ex = " + ex);
+        System.out.println("winCOndition = " + Action.winCondition);
 
     }
     
     int diceNum = 0;
     int firstResolve = 0;
-    public void resolve(ActionEvent event) {
+    public void resolve(ActionEvent event) throws InterruptedException {
         reroll.setDisable(true);
         DC1.setVisible(false);
         DC2.setVisible(false);
@@ -839,11 +844,22 @@ public class TableController implements Initializable {
                 System.out.println("Click the checkbox of who you would like to shoot (Two Spaces)");
             }
             if (d == 5) {
-                System.out.println("Click the checkbox of who you wouldd like to heal");
+                System.out.println("Click the checkbox of who you would like to heal");
             }
             firstResolve++;
         }
         Action.playerStatus();
+        pos0.setSelected(false);
+        pos1.setSelected(false);
+        pos2.setSelected(false);
+        pos3.setSelected(false);
+        pos4.setSelected(false);
+        pos5.setSelected(false);
+        pos6.setSelected(false);
+        pos7.setSelected(false);
+        System.out.println("ex = " + ex);
+        System.out.println("winCOndition = " + Action.winCondition);
+        checkEnd();
         
     }
     
@@ -969,6 +985,67 @@ public class TableController implements Initializable {
             break;
         default:
             break;
+        }
+    }
+    
+    public void checkEnd() throws InterruptedException {
+        if (ex != 0) {
+            ex();
+        }
+    }
+    public void close(ActionEvent event) {
+//         Stage stage = (Stage) exit.getScene().getWindow();
+//         stage.close();
+    }
+    
+    public void ex() throws InterruptedException {
+        nextTurn.setVisible(false);
+        roll.setVisible(false);
+        reroll.setVisible(false);
+        resolve.setVisible(false);
+        HP.setVisible(false);
+        playRole.setVisible(false);
+        playerChar.setVisible(false);
+        d1.setVisible(false);
+        d2.setVisible(false);
+        d3.setVisible(false);
+        d4.setVisible(false);
+        d5.setVisible(false);
+        pos0.setVisible(false);
+        pos1.setVisible(false);
+        pos2.setVisible(false);
+        pos3.setVisible(false);
+        pos4.setVisible(false);
+        pos5.setVisible(false);
+        pos6.setVisible(false);
+        pos7.setVisible(false);
+        DC1.setVisible(false);
+        DC2.setVisible(false);
+        DC3.setVisible(false);
+        DC4.setVisible(false);
+        DC5.setVisible(false);
+        bot1.setVisible(false);
+        bot2.setVisible(false);
+        bot3.setVisible(false);
+        bot4.setVisible(false);
+        bot5.setVisible(false);
+        bot6.setVisible(false);
+        bot7.setVisible(false);
+        if (Action.winCondition != 0) {
+            switch(Action.winCondition) {
+                case 1:
+                    mainText.setText("Sheriff and Deputys Win!");
+                    break;
+                case 2:
+                    mainText.setText("Renegades Win!");
+                    break;
+                case 3:
+                    mainText.setText("Outlaws Win!");
+                    break;
+            }
+//            while (Action.winCondition != 0) {
+                System.out.println("wghile");
+//            }
         }
     }
 

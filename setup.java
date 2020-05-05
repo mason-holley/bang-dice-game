@@ -14,7 +14,7 @@ import java.util.List;
 public class setup {
    
     
-   public static int outlaw, renegade, deputy, player_position;
+   public static int outlaw, renegade, deputy, player_position, sheriff;
    private static Integer[] character_check = new Integer[8];
    private static List<Integer> roleList;
    private static List<Integer> characterList;
@@ -90,6 +90,7 @@ public class setup {
     Integer[] role_count = new Integer[players -1];
                switch(getPlayerAmount()){
                    case 4:
+                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 2;
@@ -98,6 +99,7 @@ public class setup {
                        deputy = 0;
                        break;
                    case 5:
+                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 2;
@@ -107,6 +109,7 @@ public class setup {
                        role_count[3] = 4;
                        break;
                    case 6:
+                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 3;
@@ -117,6 +120,7 @@ public class setup {
                        role_count[4] = 4;
                        break;
                    case 7:
+                       sheriff = 1;
                        renegade = 1;
                        role_count[0] = 2;
                        outlaw = 3;
@@ -128,6 +132,7 @@ public class setup {
                        role_count[5] = 4;
                        break;
                    case 8:
+                       sheriff = 1;
                        renegade = 2;
                        role_count[0] = 2;
                        role_count[1] = 2;

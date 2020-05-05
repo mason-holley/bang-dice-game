@@ -68,7 +68,9 @@ public class Action {
         Character3 actTarget = new Character3();
         Random rand = new Random();
         left = leftTargetPos(setup.getArrayList().indexOf(actPlayer));
+        System.out.println("Left = " + left);
         right = rightTargetPos(setup.getArrayList().indexOf(actPlayer));
+        System.out.println("Right = " + right);
         optionL = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(left).getstartposition());
         optionR = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(right).getstartposition());
         if(actPlayer.getrole() == 2 && (setup.getArrayList().get(left).getrole() == 1 || setup.getArrayList().get(right).getrole() == 1)) {
@@ -147,7 +149,9 @@ public class Action {
             actBullet_1();
         else {
             left = leftTargetPos((setup.getArrayList().indexOf(actPlayer))+1);
+            System.out.println("Left = " + left);
             right = rightTargetPos((setup.getArrayList().indexOf(actPlayer))-1);
+            System.out.println("Right = " + right);
             optionL = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(left).getstartposition());
             optionR = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(right).getstartposition());
             if(actPlayer.getrole() == 2 && (setup.getArrayList().get(left).getrole() == 1 || setup.getArrayList().get(right).getrole() == 1)) {
@@ -285,6 +289,8 @@ public class Action {
                 setup.outlaw--;
             else if(actor.getrole() == 4)
                 setup.deputy--;
+            else if(actor.getrole() == 1)
+                setup.sheriff--;
             setup.removePlayer(actor.getposition());
             if(winCondition == 0)
                 winCondition = victoryCheck();
@@ -387,18 +393,23 @@ public class Action {
     public static int victoryCheck() {
         int winRole = 0;
         //renegade win
+        System.out.println("Enter Victory Check");
+        System.out.println(setup.getArrayList().size() + " " + setup.renegade + " " + setup.outlaw + " " + setup.sheriff);
         if(setup.getArrayList().size() == 1 && setup.renegade == 1) {
+            TableController.ex = 1;
             winnerRenegade = setup.getArrayList().get(0);
             winRole = winnerRenegade.getrole(); //should be 2
             System.out.println("Renegade character: " + winnerRenegade.name + " wins!");
         }
         //outlaws win
-        else if(setup.getArrayList().get(searchSheriff()).alive == false && setup.outlaw != 0) {
+        else if(setup.sheriff == 0 && setup.outlaw != 0) {
+            TableController.ex = 1;
             System.out.println("Outlaws win!");
             winRole = 3;
         }
         //sheriff and deputies win
-        else if(setup.getArrayList().get(searchSheriff()).alive == true && setup.renegade == 0 && setup.outlaw == 0) {
+        else if(setup.sheriff == 1 && setup.renegade == 0 && setup.outlaw == 0) {
+            TableController.ex = 1;
             System.out.println("Sheriff and deputies win!");
             winRole = 1;
         }
