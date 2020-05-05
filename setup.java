@@ -220,15 +220,6 @@ public class setup {
     * @return amount of players
     */      
  public static int removePlayer(int playPosition){
-     //Vulture Sam's Special Ability
-     int samHP;
-     if(SpecialAbilities.VultureSam() != -1){
-         samHP = turnOrder.get(SpecialAbilities.VultureSam()).gethp();
-         if(samHP < 0){
-             turnOrder.get(SpecialAbilities.VultureSam()).sethp(+2);
-         }
-     }
-     
      turnOrder.remove(playPosition);
      FXMLDocumentController.playerNum--;
      if (player_position > playPosition)

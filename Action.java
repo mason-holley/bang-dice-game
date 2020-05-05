@@ -9,7 +9,6 @@ import java.util.Random;
  * @author vincenthew
  */
 public class Action {
-    public static int arrowActivated;
     public static Character3 winnerRenegade = new Character3();
     public static int winCondition = 0;
     private Character3 actPlayer;
@@ -29,23 +28,13 @@ public class Action {
      * @author vincenthew
      */
     public void actArrows() {
-                //Jourdonnais Special Ability
-        int jourPos = SpecialAbilities.Jourdonnais();
-        arrowActivated = 1;
         int arrowHeld = 0;
         for(int i = 0; i < setup.getArrayList().size(); i++) {
             arrowHeld = setup.getArrayList().get(i).getarrows();
-            //Jourdonnais Special Ability. If Jourdannais is in the list and he has arrows, only take away one hp from the character
-            if(i == jourPos){
-                if(setup.getArrayList().get(i).getarrows() != 0);
-                    loseHP(setup.getArrayList().get(i), 1);
-                    }
-            else
-                loseHP(setup.getArrayList().get(i), arrowHeld);
+            loseHP(setup.getArrayList().get(i), arrowHeld);
             setup.getArrayList().get(i).setarrows(0);
             addArrowBack(arrowHeld);
         }
-        arrowActivated = 0;
     }
     /**
      * This method is used to resolve the dice effect when there are 3 or more dynamite
@@ -61,19 +50,9 @@ public class Action {
      * @author vincenthew
      */
     public void actGatling() {
-        //Paul Regret Special Ability 
-        int paulPos = SpecialAbilities.PaulRegret();
-        
         for(int i = 0; i < setup.getArrayList().size(); i++) {
-            if(setup.getArrayList().get(i).equals(actPlayer) == false) {
-                //If Paul is in the list, don't take any hp away from him
-                if(paulPos == i){
-                    //Paul doesn't lose any hp
-                    }
-                //Everybody else loses HP
-                else
-                    loseHP(setup.getArrayList().get(i), 1);
-            }
+            if(setup.getArrayList().get(i).equals(actPlayer) == false) 
+                loseHP(setup.getArrayList().get(i), 1);
         }
         addArrowBack(actPlayer.getarrows());
         actPlayer.setarrows(0);
@@ -243,13 +222,6 @@ public class Action {
      * @author Vincent Hew
      */
     public void actBeer() {
-        //Jesse Special Ability
-        int jessPos = SpecialAbilities.JesseJones();
-        int jessHP = setup.getArrayList().get(jessPos).gethp();
-        boolean jessAbility = false;
-        if(jessHP <= 4){
-            jessAbility = true;
-        }
         Character3 actTarget = new Character3();
         if(actPlayer.getrole() == 2) {
             if(searchPlayer(1).gethp() < 5 && setup.outlaw > 0 && actPlayer.gethp() > searchPlayer(1).gethp()) {
@@ -257,11 +229,6 @@ public class Action {
                 actTarget = setup.getArrayList().get(searchSheriff());
             }
             else {
-                //Jesse Special Ability code
-                if(actPlayer.getposition() == jessPos){
-                    if(jessAbility == true)
-                        gainHP(actPlayer, 1);
-                }
                 gainHP(actPlayer, 1);
                 actTarget = actPlayer;
             }
@@ -272,21 +239,11 @@ public class Action {
                 actTarget = setup.getArrayList().get(searchSheriff());
             }
             else {
-                //Jesse Special Ability code
-                if(actPlayer.getposition() == jessPos){
-                    if(jessAbility == true)
-                        gainHP(actPlayer, 1);
-                }
                 gainHP(actPlayer, 1);
                 actTarget = actPlayer;
             }
         }
         else {
-            //Jesse Special Ability code
-                if(actPlayer.getposition() == jessPos){
-                    if(jessAbility == true)
-                        gainHP(actPlayer, 1);
-                }
             gainHP(actPlayer, 1);
             actTarget = actPlayer;
         }
@@ -318,35 +275,7 @@ public class Action {
      * @param actor
      * @param hpVal (amount of health point to lose from player)
      */
-    public int loseHP(Character3 actor, int hpVal) {
-                //Bart Cassidy's Special Ability
-        if(SpecialAbilities.BartCassidy() != -1){            
-            if(Dice.getArrowPile() > 1){ 
-                if(arrowActivated != 1){
-                    if(SpecialAbilities.BartCassidy() != TableController.gamePos){
-                        setup.getArrayList().get(SpecialAbilities.BartCassidy()).addarrows(1);
-                        return 0;
-                    }
-                }
-            }
-        }
-        
-        //El Gringo's Special Ability
-        if(SpecialAbilities.ElGringo() != -1){  
-            if(arrowActivated != 1){
-                if(SpecialAbilities.ElGringo() != TableController.gamePos){
-                    setup.getArrayList().get(TableController.gamePos).addarrows(1);
-                }
-            }   
-        }
-        
-        //Pedro Ramirez's special ability
-        if(SpecialAbilities.PedroRamirez() != -1){ //If Pedro is in the list of players
-            if(setup.getArrayList().get(SpecialAbilities.PedroRamirez()).getarrows() > 0){ //If his carried arrows is greater than 0
-                addArrowBack(hpVal); //Add the amount of hp lost in arrows back to the pile
-                setup.getArrayList().get(SpecialAbilities.PedroRamirez()).setarrows(setup.getArrayList().get(SpecialAbilities.PedroRamirez()).getarrows() -1); //Subtract one from Pedro's Arrow Count
-            }           
-        }
+    public void loseHP(Character3 actor, int hpVal) {
         actor.sethp(actor.gethp() - hpVal);
         if(actor.gethp() <= 0) {
             //dead condition
@@ -366,7 +295,6 @@ public class Action {
             if(winCondition == 0)
                 winCondition = victoryCheck();
         }
-        return 0;
     }
     /**
      *This method is used to add amount of health point to the player
