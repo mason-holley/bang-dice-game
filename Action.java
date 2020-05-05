@@ -9,7 +9,7 @@ import java.util.Random;
  * @author vincenthew
  */
 public class Action {
-    private static int arrowActivated;
+    public static int arrowActivated;
     public static Character3 winnerRenegade = new Character3();
     public static int winCondition = 0;
     private Character3 actPlayer;
@@ -29,11 +29,10 @@ public class Action {
      * @author vincenthew
      */
     public void actArrows() {
-        int arrowHeld = 0;
-        //Jourdonnais Special Ability
+                //Jourdonnais Special Ability
         int jourPos = SpecialAbilities.Jourdonnais();
         arrowActivated = 1;
-        
+        int arrowHeld = 0;
         for(int i = 0; i < setup.getArrayList().size(); i++) {
             arrowHeld = setup.getArrayList().get(i).getarrows();
             //Jourdonnais Special Ability. If Jourdannais is in the list and he has arrows, only take away one hp from the character
@@ -64,8 +63,9 @@ public class Action {
     public void actGatling() {
         //Paul Regret Special Ability 
         int paulPos = SpecialAbilities.PaulRegret();
+        
         for(int i = 0; i < setup.getArrayList().size(); i++) {
-            if(setup.getArrayList().get(i).equals(actPlayer) == false) 
+            if(setup.getArrayList().get(i).equals(actPlayer) == false) {
                 //If Paul is in the list, don't take any hp away from him
                 if(paulPos == i){
                     //Paul doesn't lose any hp
@@ -73,6 +73,7 @@ public class Action {
                 //Everybody else loses HP
                 else
                     loseHP(setup.getArrayList().get(i), 1);
+            }
         }
         addArrowBack(actPlayer.getarrows());
         actPlayer.setarrows(0);
@@ -88,7 +89,9 @@ public class Action {
         Character3 actTarget = new Character3();
         Random rand = new Random();
         left = leftTargetPos(setup.getArrayList().indexOf(actPlayer));
+        System.out.println("Left = " + left);
         right = rightTargetPos(setup.getArrayList().indexOf(actPlayer));
+        System.out.println("Right = " + right);
         optionL = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(left).getstartposition());
         optionR = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(right).getstartposition());
         if(actPlayer.getrole() == 2 && (setup.getArrayList().get(left).getrole() == 1 || setup.getArrayList().get(right).getrole() == 1)) {
@@ -142,8 +145,12 @@ public class Action {
      */
     public void actBullet_1(int targetPos) {
         Character3 actTarget = new Character3();
-        actTarget = setup.getArrayList().get(targetPos);
-        loseHP(setup.getArrayList().get(targetPos),1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getstartposition() == targetPos) {
+                actTarget = setup.getArrayList().get(i);
+            }
+        }
+        loseHP(setup.getArrayList().get(actTarget.getposition()),1);
         //update graph
         if(actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 0);
@@ -163,7 +170,9 @@ public class Action {
             actBullet_1();
         else {
             left = leftTargetPos((setup.getArrayList().indexOf(actPlayer))+1);
+            System.out.println("Left = " + left);
             right = rightTargetPos((setup.getArrayList().indexOf(actPlayer))-1);
+            System.out.println("Right = " + right);
             optionL = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(left).getstartposition());
             optionR = Decision.getThreatLv(actPlayer.getstartposition(), setup.getArrayList().get(right).getstartposition());
             if(actPlayer.getrole() == 2 && (setup.getArrayList().get(left).getrole() == 1 || setup.getArrayList().get(right).getrole() == 1)) {
@@ -218,8 +227,12 @@ public class Action {
      */
     public void actBullet_2(int targetPos) {
         Character3 actTarget = new Character3();
-        actTarget = setup.getArrayList().get(targetPos);
-        loseHP(setup.getArrayList().get(targetPos),1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getstartposition() == targetPos) {
+                actTarget = setup.getArrayList().get(i);
+            }
+        }
+        loseHP(setup.getArrayList().get(actTarget.getposition()),1);
         //update graph
         if(actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 0);
@@ -237,7 +250,6 @@ public class Action {
         if(jessHP <= 4){
             jessAbility = true;
         }
-        
         Character3 actTarget = new Character3();
         if(actPlayer.getrole() == 2) {
             if(searchPlayer(1).gethp() < 5 && setup.outlaw > 0 && actPlayer.gethp() > searchPlayer(1).gethp()) {
@@ -289,8 +301,12 @@ public class Action {
      */
     public void actBeer(int targetPos) {
         Character3 actTarget = new Character3();
-        actTarget = setup.getArrayList().get(targetPos);
-        gainHP(setup.getArrayList().get(targetPos),1);
+        for(int i = 0; i < setup.getArrayList().size(); i++) {
+            if(setup.getArrayList().get(i).getstartposition() == targetPos) {
+                actTarget = setup.getArrayList().get(i);
+            }
+        }
+        gainHP(setup.getArrayList().get(actTarget.getposition()),1);
         //update graph
         if(actTarget.equals(actPlayer) == false && actTarget.getrole() == 1)
             Decision.updateGraph(actPlayer, 1);
@@ -303,7 +319,7 @@ public class Action {
      * @param hpVal (amount of health point to lose from player)
      */
     public int loseHP(Character3 actor, int hpVal) {
-        //Bart Cassidy's Special Ability
+                //Bart Cassidy's Special Ability
         if(SpecialAbilities.BartCassidy() != -1){            
             if(Dice.getArrowPile() > 1){ 
                 if(arrowActivated != 1){
@@ -315,7 +331,7 @@ public class Action {
             }
         }
         
-                //El Gringo's Special Ability
+        //El Gringo's Special Ability
         if(SpecialAbilities.ElGringo() != -1){  
             if(arrowActivated != 1){
                 if(SpecialAbilities.ElGringo() != TableController.gamePos){
@@ -324,14 +340,13 @@ public class Action {
             }   
         }
         
-                //Pedro Ramirez's special ability
+        //Pedro Ramirez's special ability
         if(SpecialAbilities.PedroRamirez() != -1){ //If Pedro is in the list of players
             if(setup.getArrayList().get(SpecialAbilities.PedroRamirez()).getarrows() > 0){ //If his carried arrows is greater than 0
                 addArrowBack(hpVal); //Add the amount of hp lost in arrows back to the pile
                 setup.getArrayList().get(SpecialAbilities.PedroRamirez()).setarrows(setup.getArrayList().get(SpecialAbilities.PedroRamirez()).getarrows() -1); //Subtract one from Pedro's Arrow Count
             }           
         }
-        
         actor.sethp(actor.gethp() - hpVal);
         if(actor.gethp() <= 0) {
             //dead condition
@@ -345,6 +360,8 @@ public class Action {
                 setup.outlaw--;
             else if(actor.getrole() == 4)
                 setup.deputy--;
+            else if(actor.getrole() == 1)
+                setup.sheriff--;
             setup.removePlayer(actor.getposition());
             if(winCondition == 0)
                 winCondition = victoryCheck();
@@ -448,18 +465,23 @@ public class Action {
     public static int victoryCheck() {
         int winRole = 0;
         //renegade win
+        System.out.println("Enter Victory Check");
+        System.out.println(setup.getArrayList().size() + " " + setup.renegade + " " + setup.outlaw + " " + setup.sheriff);
         if(setup.getArrayList().size() == 1 && setup.renegade == 1) {
+            TableController.ex = 1;
             winnerRenegade = setup.getArrayList().get(0);
             winRole = winnerRenegade.getrole(); //should be 2
             System.out.println("Renegade character: " + winnerRenegade.name + " wins!");
         }
         //outlaws win
-        else if(setup.getArrayList().get(searchSheriff()).alive == false && setup.outlaw != 0) {
+        else if(setup.sheriff == 0 && setup.outlaw != 0) {
+            TableController.ex = 1;
             System.out.println("Outlaws win!");
             winRole = 3;
         }
         //sheriff and deputies win
-        else if(setup.getArrayList().get(searchSheriff()).alive == true && setup.renegade == 0 && setup.outlaw == 0) {
+        else if(setup.sheriff == 1 && setup.renegade == 0 && setup.outlaw == 0) {
+            TableController.ex = 1;
             System.out.println("Sheriff and deputies win!");
             winRole = 1;
         }
