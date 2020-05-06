@@ -316,15 +316,14 @@ public class Action {
      * @param actor
      * @param hpVal (amount of health point to lose from player)
      */
-    public int loseHP(Character3 actor, int hpVal) {
+    public void loseHP(Character3 actor, int hpVal) {
         //Bart Cassidy's Special Ability
         if(actor.getcharnum() == 1){            
             if(Dice.getArrowPile() > 1){ 
                 if(arrowActivated != 1){
                     if(SpecialAbilities.BartCassidy() != TableController.gamePos){
                         setup.getArrayList().get(SpecialAbilities.BartCassidy()).addarrows(1);
-                        
-                        return 0;
+                        return;
                     }
                 }
             }
@@ -365,7 +364,7 @@ public class Action {
             if(winCondition == 0)
                 winCondition = victoryCheck();
         }
-        return 0;
+        return;
     }
     /**
      *This method is used to add amount of health point to the player
