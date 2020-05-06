@@ -35,8 +35,8 @@ public class setup {
         character_check[3] = 6;
         character_check[4] = 9;
         character_check[5] = 10;
-        character_check[6] = 2;
-        character_check[7] = 3;
+        character_check[6] = 12;
+        character_check[7] = 15;
         characterList = Arrays.asList(character_check);
         Collections.shuffle(characterList);
         players = FXMLDocumentController.playerNum;
@@ -221,11 +221,13 @@ public class setup {
     */      
  public static int removePlayer(int playPosition){
      //Vulture Sam's Special Ability
+     Dice.setArrowPile(Dice.getArrowPile() + turnOrder.get(playPosition).arrows);
+     turnOrder.get(playPosition).arrows = 0;
      int samHP;
      if(SpecialAbilities.VultureSam() != -1){
          samHP = turnOrder.get(SpecialAbilities.VultureSam()).gethp();
          if(samHP < 0){
-             turnOrder.get(SpecialAbilities.VultureSam()).sethp(+2);
+             turnOrder.get(SpecialAbilities.VultureSam()).sethp(samHP + 2);
          }
      }
      turnOrder.remove(playPosition);

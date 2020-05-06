@@ -50,6 +50,10 @@ public class CharacterController implements Initializable {
     private Button C14;
     private Button C15;
     private Button C16;
+    private Button C17;
+    private Button C18;
+    private Button C19;
+    private Button C20;
     public Button close;
     static int choice = 0;
 
@@ -324,6 +328,66 @@ public class CharacterController implements Initializable {
            System.out.println("hoal");
         }
     }
+//    private void C17(ActionEvent event) {
+//        try {
+//            choice = 17;
+//            Stage stage = (Stage) C1.getScene().getWindow();
+//            stage.close();
+//
+//            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+//            stage = new Stage();
+//            
+//            stage.setScene(new Scene(root2));
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.out.println("hoal");
+//        }
+//    }
+//    private void C18(ActionEvent event) {
+//        try {
+//            choice = 18;
+//            Stage stage = (Stage) C1.getScene().getWindow();
+//            stage.close();
+//
+//            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+//            stage = new Stage();
+//            
+//            stage.setScene(new Scene(root2));
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.out.println("hoal");
+//        }
+//    }
+//    private void C19(ActionEvent event) {
+//        try {
+//            choice = 19;
+//            Stage stage = (Stage) C1.getScene().getWindow();
+//            stage.close();
+//
+//            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+//            stage = new Stage();
+//            
+//            stage.setScene(new Scene(root2));
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.out.println("hoal");
+//        }
+//    }
+//    private void C20(ActionEvent event) {
+//        try {
+//            choice = 20;
+//            Stage stage = (Stage) C1.getScene().getWindow();
+//            stage.close();
+//
+//            Parent root2 = FXMLLoader.load(getClass().getResource("table.fxml"));
+//            stage = new Stage();
+//            
+//            stage.setScene(new Scene(root2));
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.out.println("hoal");
+//        }
+//    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

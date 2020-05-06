@@ -78,13 +78,14 @@ public class TableController implements Initializable {
     public CheckBox pos7;
     public Label HP;
     public Label mainText;
+    public Label instruct;
     public Label playRole;
     public ImageView playerChar;
-    int playChoice = CharacterController.choice;
+    public int playChoice = CharacterController.choice;
     public static int playPos = 0;
     public static int gamePos = 0;
     public static int targetPos = 0;
-    static int ex = 0;
+    public static int ex = 0;
     
     
     File f1 = new File("D:\\Documents\\NetBeansProjects\\ang\\src\\Arrow.png");
@@ -243,7 +244,6 @@ public class TableController implements Initializable {
         
         reroll.setDisable(false);
         dice1.rollDice();
-        diceList.set(0, dice1);
         switch (dice1.getDice()) {
             case 1:
                 d1.setImage(arrow);
@@ -725,22 +725,24 @@ public class TableController implements Initializable {
         playerCheck(activePlayer);
         Action.playerStatus();
         gamePos++;
-        if (setup.getArrayList().get(setup.player_position).alive == false) {
-            setup.player_position = -1;
-        }
         }
         else {
             nextTurn.setDisable(true);
             for(int i = 0; i < 5; i++) {
             System.out.println(diceList.get(i).getDice());
             }
+            activePlayer = setup.getArrayList().get(gamePos);
+            playerCheck(activePlayer);
+            dice1 = new Dice(activePlayer);
+            dice2 = new Dice(activePlayer);
+            dice3 = new Dice(activePlayer);
+            dice4 = new Dice(activePlayer);
+            dice5 = new Dice(activePlayer);
             dice1.resetDice();
             dice2.resetDice();
             dice3.resetDice();
             dice4.resetDice();
             dice5.resetDice();
-            activePlayer = setup.getArrayList().get(gamePos);
-            playerCheck(activePlayer);
             roll.setDisable(false);
             
         }
@@ -816,12 +818,13 @@ public class TableController implements Initializable {
             }
                 if (d == 3) {
                     System.out.println("Click the checkbox of who you would like to shoot (One Space)");
+                    instruct.setText("Click the checkbox of who you would like to shoot (One Space)");
                 }
                 if (d == 4) {
-                    System.out.println("Click the checkbox of who you would like to shoot (Two Spaces)");
+                    instruct.setText("Click the checkbox of who you would like to shoot (Two Spaces)");
                 }
                 if (d == 5) {
-                    System.out.println("Click the checkbox of who you would like to heal");
+                    instruct.setText("Click the checkbox of who you would like to heal");
                 }
             }
             else {
@@ -835,16 +838,16 @@ public class TableController implements Initializable {
         }
         else {
             if ((d == 1) || (d == 2) || (d == 6)) {
-                System.out.println("This dice is resolved");
+                instruct.setText("This dice is resolved");
             }
             if (d == 3) {
-                System.out.println("Click the checkbox of who you would like to shoot (One Space)");
+                instruct.setText("Click the checkbox of who you would like to shoot (One Space)");
             }
             if (d == 4) {
-                System.out.println("Click the checkbox of who you would like to shoot (Two Spaces)");
+                instruct.setText("Click the checkbox of who you would like to shoot (Two Spaces)");
             }
             if (d == 5) {
-                System.out.println("Click the checkbox of who you would like to heal");
+                instruct.setText("Click the checkbox of who you would like to heal");
             }
             firstResolve++;
         }
@@ -857,6 +860,8 @@ public class TableController implements Initializable {
         pos5.setSelected(false);
         pos6.setSelected(false);
         pos7.setSelected(false);
+        activePlayer = setup.getArrayList().get(playPos);
+        playerCheck(activePlayer);
         System.out.println("ex = " + ex);
         System.out.println("winCOndition = " + Action.winCondition);
         checkEnd();
@@ -914,12 +919,12 @@ public class TableController implements Initializable {
             case 1:
                 return(" Sheriff");
                 //Comment out this for actual game leaving for testings
-            case 2:
-                return(" Renegade");
-            case 3:
-                return(" Outlaw");
-            case 4: 
-                return(" Deputy");
+//            case 2:
+//                return(" Renegade");
+//            case 3:
+//                return(" Outlaw");
+//            case 4: 
+//                return(" Deputy");
             default:
                 return "";
         }

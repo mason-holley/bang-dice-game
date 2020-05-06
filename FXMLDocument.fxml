@@ -39,5 +39,7 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Label layoutX="607.0" layoutY="615.0" prefHeight="30.0" prefWidth="67.0" text="Expansions?" />
+      <CheckBox layoutX="630.0" layoutY="637.0" mnemonicParsing="false" />
    </children>
 </AnchorPane>

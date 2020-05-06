@@ -30,9 +30,11 @@ public class Action {
      */
     public void actArrows() {
         //Jourdonnais Special Ability
+        arrowActivated = 1 ;
         int jourPos = SpecialAbilities.Jourdonnais();
         int arrowHeld = 0;
         for(int i = 0; i < setup.getArrayList().size(); i++) {
+            arrowHeld = setup.getArrayList().get(i).getarrows();
             //Jourdonnais Special Ability. If Jourdannais is in the list and he has arrows, only take away one hp from the character
             if(i == jourPos){
                 if(setup.getArrayList().get(i).getarrows() != 0);
@@ -40,10 +42,10 @@ public class Action {
                     }
             else
                 loseHP(setup.getArrayList().get(i), arrowHeld);
-            loseHP(setup.getArrayList().get(i), arrowHeld);
             setup.getArrayList().get(i).setarrows(0);
             addArrowBack(arrowHeld);
         }
+        arrowActivated = 0;
     }
     /**
      * This method is used to resolve the dice effect when there are 3 or more dynamite
@@ -241,7 +243,10 @@ public class Action {
     public void actBeer() {
         //Jesse Special Ability
         int jessPos = SpecialAbilities.JesseJones();
-        int jessHP = setup.getArrayList().get(jessPos).gethp();
+        int jessHP = 10;
+        if (jessPos != -1) {
+        jessHP = setup.getArrayList().get(jessPos).gethp();
+        }
         boolean jessAbility = false;
         if(jessHP <= 4){
             jessAbility = true;
@@ -311,37 +316,38 @@ public class Action {
      */
     public int loseHP(Character3 actor, int hpVal) {
         //Bart Cassidy's Special Ability
-        if(SpecialAbilities.BartCassidy() != -1){            
+        if(actor.getcharnum() == 1){            
             if(Dice.getArrowPile() > 1){ 
                 if(arrowActivated != 1){
                     if(SpecialAbilities.BartCassidy() != TableController.gamePos){
                         setup.getArrayList().get(SpecialAbilities.BartCassidy()).addarrows(1);
+                        
                         return 0;
                     }
                 }
             }
         }
         
-        //El Gringo's Special Ability
-        if(SpecialAbilities.ElGringo() != -1){  
+        if(actor.getcharnum() == 4){  
             if(arrowActivated != 1){
                 if(SpecialAbilities.ElGringo() != TableController.gamePos){
                     setup.getArrayList().get(TableController.gamePos).addarrows(1);
                 }
             }   
         }
-        
         //Pedro Ramirez's special ability
-        if(SpecialAbilities.PedroRamirez() != -1){ //If Pedro is in the list of players
+        if(actor.getcharnum() == 10){ //If Pedro is in the list of players
             if(setup.getArrayList().get(SpecialAbilities.PedroRamirez()).getarrows() > 0){ //If his carried arrows is greater than 0
                 addArrowBack(hpVal); //Add the amount of hp lost in arrows back to the pile
                 setup.getArrayList().get(SpecialAbilities.PedroRamirez()).setarrows(setup.getArrayList().get(SpecialAbilities.PedroRamirez()).getarrows() -1); //Subtract one from Pedro's Arrow Count
             }           
         }
-        
         actor.sethp(actor.gethp() - hpVal);
         if(actor.gethp() <= 0) {
             //dead condition
+            if (actor.position == setup.player_position) {
+                setup.player_position = -1;
+            }
             actor.sethp(0);
             actor.setdead();
             System.out.println("Player: " + actor.name + " is dead!");
@@ -487,7 +493,9 @@ public class Action {
             System.out.print("Player: " + current.name);
             System.out.print(" | Role: " + current.getrole());
             System.out.print(" | HP: " + current.gethp() + "/" + current.getstarthp());
+            System.out.print(" | Arrows" + current.getarrows());
             System.out.println(" | Position: " + current.getposition());
         }
+        System.out.println("Total arrows " + Dice.getArrowPile());
     }
 }

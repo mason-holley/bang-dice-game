@@ -19,7 +19,7 @@ public class Dice{
     private boolean lock;
     public static boolean globalLockDown;
     private int solveCount;
-    private static int arrows;
+    private static int arrows = 9;
     private static int dynamite;
     private static int gatling;
     private static int firstRoll;
@@ -33,7 +33,6 @@ public class Dice{
      */
     public Dice(Character3 self) {
         diceResult = 0;
-        arrows = 9;
         dynamite = 0;
         gatling = 0;
         lock = false;
@@ -73,7 +72,6 @@ public class Dice{
         if(lock == false && globalLockDown == false) {
             switch(diceResult) {
                 case 1:
-                    arrows--;
                     diceAct.gainArrow();
                     //when the arrow pile is empty
                     if(arrows == 0) {
