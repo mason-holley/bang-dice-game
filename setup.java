@@ -28,22 +28,23 @@ public class setup {
     * Places each of the players in the linked list and sets their position in their character object.
     * @author Mason Holley
     */ 
-    public static void setPlayerAmount(){ //come fix later
-        character_check[0] = 1;
-        character_check[1] = 4;
-        character_check[2] = 5;
-        character_check[3] = 6;
-        character_check[4] = 9;
-        character_check[5] = 10;
-        character_check[6] = 12;
-        character_check[7] = 15;
-        characterList = Arrays.asList(character_check);
-        Collections.shuffle(characterList);
-        players = FXMLDocumentController.playerNum;
+    public static void setPlayerAmount(){ 
+        //character_check contains all the valid characters to be chosen by the player
+        character_check[0] = 1; //Bart Cassidy
+        character_check[1] = 4; //El Gringo
+        character_check[2] = 5; //Jesse Jones
+        character_check[3] = 6; //Jourdanais
+        character_check[4] = 9; //Paul Regret
+        character_check[5] = 10; //Pedro Ramirez
+        character_check[6] = 12; //Sid Ketchum
+        character_check[7] = 15; //Vulture Sam
+        characterList = Arrays.asList(character_check); //Put the character array into a list 
+        Collections.shuffle(characterList); //Shuffle the list
+        players = FXMLDocumentController.playerNum; //Get the number of players choice from the gui
         for(int i = 0; i < players; i++){
-            turnOrder.add(Character3.character_choice(characterList.get(i)));
-            turnOrder.get(i).setposition(i);
-            turnOrder.get(i).setstartposition(i);
+            turnOrder.add(Character3.character_choice(characterList.get(i))); //Fill the array list with bots
+            turnOrder.get(i).setposition(i); //Set each of their position values in the character object
+            turnOrder.get(i).setstartposition(i); //Set the initial position of each in the character object
             
             
         }
@@ -61,21 +62,21 @@ public class setup {
     }
     
     /**
-    * Inserts the player into the array list
+    * Inserts the player into a random position in the array list
     * @author Mason Holley
     */ 
     public static void insertPlayer(){
         Random rand = new Random();
         player_position = rand.nextInt(players);
-        if(player_position == 0){
+        if(player_position == 0){ //If they are placed into position zero, assign them the sheriff role
             Character3.humanPlayer(CharacterController.choice).setrole(1); 
         }
-        turnOrder.set(player_position, Character3.humanPlayer(CharacterController.choice));         
-        for (int i = 0; i < players; i++) // delete
+        turnOrder.set(player_position, Character3.humanPlayer(CharacterController.choice)); //This line replaces what the bot in player_position with the player object
+        for (int i = 0; i < players; i++) // delete, used for testing
         {
             System.out.println(turnOrder.get(i).name);
         }
-        turnOrder.get(player_position).setposition(player_position);
+        turnOrder.get(player_position).setposition(player_position); //These two lines assign the position and start_position value into the player's character object
         turnOrder.get(player_position).setstartposition(player_position);
     }
     
@@ -86,9 +87,8 @@ public class setup {
     * @author Mason Holley
     */    
     public static void giveRole(){
-    Random rand = new Random();
     Integer[] role_count = new Integer[players -1];
-               switch(getPlayerAmount()){
+               switch(getPlayerAmount()){ //This switch statement determines the amount of required roles depending on the amount of players
                    case 4:
                        sheriff = 1;
                        renegade = 1;
@@ -145,15 +145,15 @@ public class setup {
                        role_count[6] = 4;
                        break;
                 }
-                roleList = Arrays.asList(role_count);
-                Collections.shuffle(roleList);
+                roleList = Arrays.asList(role_count); 
+                Collections.shuffle(roleList); //Randomize the roles
        for(int i = 0; i < turnOrder.size(); i++){
            if(i == 0){
-               turnOrder.get(i).setrole(1);
+               turnOrder.get(i).setrole(1); // For whoever is in position zero, they automatically get the sheriff role
            }
            if(i > 0){
                 
-                turnOrder.get(i).setrole(roleList.get(i-1));
+                turnOrder.get(i).setrole(roleList.get(i-1)); //Everyone else gets a random role assigned from the available roles
            }
        }
    }
@@ -196,7 +196,7 @@ public class setup {
     * @param player
     * @return character value
     */      
-    public static int chooseCharacter(boolean player){ //Allows the player to choose their character
+    public static int chooseCharacter(boolean player){ //Allows the player to choose their character, depreciated
         int charValue = 0;
         Random rand = new Random();
         if(player == true){
@@ -216,13 +216,15 @@ public class setup {
    /**
     * Removes a player from the array list at a given position and updates all other character positions
     * @author Mason Holley
-    * @param player_position
+    * @param playPosition
     * @return amount of players
     */      
  public static int removePlayer(int playPosition){
-     //Vulture Sam's Special Ability
      Dice.setArrowPile(Dice.getArrowPile() + turnOrder.get(playPosition).arrows);
      turnOrder.get(playPosition).arrows = 0;
+     
+     //Vulture Sam's Special Ability
+     //If somebody dies, Sam's HP increases by two
      int samHP;
      if(SpecialAbilities.VultureSam() != -1){
          samHP = turnOrder.get(SpecialAbilities.VultureSam()).gethp();
@@ -230,6 +232,7 @@ public class setup {
              turnOrder.get(SpecialAbilities.VultureSam()).sethp(samHP + 2);
          }
      }
+     
      turnOrder.remove(playPosition);
      FXMLDocumentController.playerNum--;
      if (player_position > playPosition)

@@ -127,22 +127,22 @@ public class SpecialAbilities {
     * @author Mason Holley
     * @return sidPosition
     */ 
-//    public static int SidKetchum(){
-//        int sidValue = 12;
-//        int sidPosition = -1;
-//        int sidHP; 
-//        
-//        for(int i = 0; i < setup.getArrayList().size(); i++){
-//            if(setup.getArrayList().get(i).char_num == sidValue);{
-//                sidPosition = i;
-//            }
-//        }       
-//        if(TableController.gamePos == sidPosition){
-//            sidHP = setup.getArrayList().get(sidPosition).gethp();
-//            setup.getArrayList().get(sidPosition).sethp(sidHP + 1);
-//      }
-//        return sidPosition;
-//    }
+    public static int SidKetchum(){
+        int sidValue = 12;
+        int sidPosition = -1;
+        int sidHP; 
+        
+        for(int i = 0; i < setup.getArrayList().size(); i++){
+            if(setup.getArrayList().get(i).char_num == sidValue);{
+                sidPosition = i;
+            }
+        }       
+        if(TableController.gamePos == sidPosition){
+            sidHP = setup.getArrayList().get(sidPosition).gethp();
+            setup.getArrayList().get(sidPosition).sethp(sidHP + 1);
+      }
+        return sidPosition;
+    }
 
 
     /**
