@@ -1,14 +1,23 @@
+// CS 2435 Spring 2020
+// Nicholas Ingle
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    Take the value given and return a object that holds the chosen characters information
+    and provide multiple methods to interacte with said objects
  */
 package ang;
 import java.util.*;
-/**
- *
- * @author Nicholas
- */
+/*
+Class Name: Character3
+Description of Class:   Take the value given and return a object that holds the chosen characters information
+                        and provide multiple methods to interacte with said objects
+
+Author : Nicholas Ingle
+Contributors: Vincent Hew
+Work Done:
+Nicholas Ingle - Created main code including all if statements ,Character3 class objects and all methods to get and change values within the objects
+Vincent Hew- Created defualt Character3 constructer
+
+/*defualt character constructer for use outside of Character3 file*/
 public class Character3 {
     public int charvalue,char_num, hp, arrows,position,role,playernumber,startposition,starthp;
     public static int playernum = 1;
