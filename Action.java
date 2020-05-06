@@ -7,6 +7,7 @@ import java.util.Random;
 /**
  *This class is used to implement all the dice actions and actions needs to take during the game
  * @author vincenthew
+ * @collaborator Mason Holley: implement the character special ability code
  */
 public class Action {
     public static int arrowActivated;
@@ -18,7 +19,7 @@ public class Action {
     /**
      *This constructor assign the current player to actPlayer object
      * @author vincenthew
-     * @param self (Player object)
+     * @param self (character object)
      */
     public Action(Character3 self) {
         this.actPlayer = self;
@@ -27,6 +28,7 @@ public class Action {
      *This method is used to resolve the dice effect when there is no arrow left in the pile
      * which the players will lose health point based on the arrows they have and return them back to pile
      * @author vincenthew
+     * @collaborator Mason Holley: implement the character special ability code
      */
     public void actArrows() {
         //Jourdonnais Special Ability
@@ -59,19 +61,17 @@ public class Action {
      *This method is used to resolve the dice effect when there are 3 or more gatling
      * which everyone except the current player will lose 1 health point, and the current player will discard all the arrows he held
      * @author vincenthew
+     * @collaborator Mason Holley: implement the character special ability code
      */
     public void actGatling() {
         //Paul Regret Special Ability 
         int paulPos = SpecialAbilities.PaulRegret();
         for(int i = 0; i < setup.getArrayList().size(); i++) {
-            if(setup.getArrayList().get(i).equals(actPlayer) == false) 
+            if(setup.getArrayList().get(i).equals(actPlayer) == false) {
                 //If Paul is in the list, don't take any hp away from him
-                if(paulPos == i){
-                    //Paul doesn't lose any hp
-                    }
-                //Everybody else loses HP
-                else
+                if(paulPos != i)
                     loseHP(setup.getArrayList().get(i), 1);
+            }
         }
         addArrowBack(actPlayer.getarrows());
         actPlayer.setarrows(0);
@@ -239,6 +239,7 @@ public class Action {
      *This method is used to resolve the dice effect of beer
      * which will choose one player by specific strategy and heal the player by 1 health point
      * @author Vincent Hew
+     * @collaborator Mason Holley: implement the character special ability code
      */
     public void actBeer() {
         //Jesse Special Ability
@@ -311,6 +312,7 @@ public class Action {
      *This method is used to take amount of health point out from the player
      * This method will also check the win condition and remove the dead player from the list
      * @author Vincent Hew
+     * @collaborator Mason Holley: implement the character special ability code
      * @param actor
      * @param hpVal (amount of health point to lose from player)
      */
@@ -351,7 +353,6 @@ public class Action {
             actor.sethp(0);
             actor.setdead();
             System.out.println("Player: " + actor.name + " is dead!");
-            System.out.println("Player alive status: " + actor.alive);
             if(actor.getrole() == 2)
                 setup.renegade--;
             else if(actor.getrole() == 3)
@@ -463,8 +464,6 @@ public class Action {
     public static int victoryCheck() {
         int winRole = 0;
         //renegade win
-        System.out.println("Enter Victory Check");
-        System.out.println(setup.getArrayList().size() + " " + setup.renegade + " " + setup.outlaw + " " + setup.sheriff);
         if(setup.getArrayList().size() == 1 && setup.renegade == 1) {
             TableController.ex = 1;
             winnerRenegade = setup.getArrayList().get(0);
@@ -485,6 +484,10 @@ public class Action {
         }
         return winRole;
     }
+    /**
+     * This method is used to display all the player's current status who are still alive on the list
+     * @author Vincent Hew
+     */
     public static void playerStatus() {
         Character3 current = new Character3();
         System.out.println(">>> Player Status <<<");

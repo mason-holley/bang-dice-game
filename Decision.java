@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  *This class is used to create the decision graph so that the bot player can adjust their strategy during the game
- * @author vincenthew
+ * @author Vincent Hew
  */
 public class Decision {
     private static int[][] decisionGraph = new int[8][8];

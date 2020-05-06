@@ -7,12 +7,12 @@
  *  6 = gatling
 */
 package ang;
-
 import java.util.Random;
 
 /**
- *
- * @author vincenthew
+ *This class is used to create dice objects and implement dice rolling actions
+ * @author Vincent Hew
+ * @collaborator Nicholas Valdes: debug the game and edit conditions to let the class working correctly in the game
  */
 public class Dice{
     private int diceResult;
@@ -25,7 +25,6 @@ public class Dice{
     private static int firstRoll;
     public static int rerollCount;
     private Action diceAct;
-    private Character3 actPlayer = new Character3();
     /**
      * This constructor is used to create a dice object with default attributes
      *@author Vincent Hew
@@ -41,7 +40,6 @@ public class Dice{
         solveCount = 0;
         firstRoll = 0;
         diceAct = new Action(self);
-        actPlayer = self;
     }
     /**
      *This method is used to roll the single dice and resolve after the dice is locked
@@ -61,9 +59,8 @@ public class Dice{
             diceResult = randDice.nextInt(6)+1;
         }
         else if(lock == true || globalLockDown == true) {
-            if(dynamite >= 3 && firstRoll == 5) {
+            if(dynamite >= 3 && firstRoll == 5) 
                 System.out.println(">ALERT: Global lock down");
-            }
             else
                 System.out.println(">ALERT: Dice cannot be rerolled.");
             diceResolve();
@@ -119,36 +116,27 @@ public class Dice{
      * @author Vincent Hew
      */
     private void diceResolve(){
-  //delete this after this is replace with value from gui
         solveCount++;
         if(solveCount == 1) {
-            System.out.println("Dice Result = " + diceResult);
-            System.out.println("Setup " + TableController.gamePos);
-            System.out.println("Act P " +TableController.playPos);
             switch(diceResult) {
                 case 3:
-                    if(TableController.gamePos == TableController.playPos) {
-                        System.out.println("Human Target Pos = " + TableController.targetPos);
-                        diceAct.actBullet_1(TableController.targetPos); }
-                    else{
+                    if(TableController.gamePos == TableController.playPos) 
+                        diceAct.actBullet_1(TableController.targetPos);
+                    else
                         diceAct.actBullet_1();
-                        System.out.println("Bot Target Pos = " + TableController.targetPos);}
                     break;
                 case 4:
-                    if(TableController.gamePos == TableController.playPos) {
-                        System.out.println("Human Target Pos = " + TableController.targetPos);
-                        diceAct.actBullet_2(TableController.targetPos); }
-                    else {
+                    if(TableController.gamePos == TableController.playPos) 
+                        diceAct.actBullet_2(TableController.targetPos);
+                    else 
                         diceAct.actBullet_2();
-                    System.out.println("Bot Target Pos = " + TableController.targetPos);}
                     break;
                 case 5:
-                    if(TableController.gamePos == TableController.playPos) {
-                        System.out.println("Human Target Pos = " + TableController.targetPos);
-                        diceAct.actBeer(TableController.targetPos); }
-                        else {
+                    if(TableController.gamePos == TableController.playPos) 
+                        diceAct.actBeer(TableController.targetPos);
+                    else 
                         diceAct.actBeer();
-                        System.out.println("Bot Target Pos = " + TableController.targetPos);}
+
                     break;
                 case 6:
                     gatling++;
