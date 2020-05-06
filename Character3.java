@@ -107,6 +107,7 @@ public class Character3 {
      public void addarrows (int newarrows)
     {
         this.arrows += newarrows;
+        Dice.setArrowPile(Dice.getArrowPile()-1);
     }
      
     /*a method to set the number of arrows currently held by the desired character*/
